@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/projectName"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="23sp"
+        android:lines="1"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/projectCreationDate"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="5dp"
+        android:textSize="15sp"/>
+
+</LinearLayout>

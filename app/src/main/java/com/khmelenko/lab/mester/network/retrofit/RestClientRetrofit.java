@@ -1,5 +1,7 @@
 package com.khmelenko.lab.mester.network.retrofit;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.khmelenko.lab.mester.common.Constants;
 import com.khmelenko.lab.mester.network.OnRestCallComplete;
 import com.khmelenko.lab.mester.network.RestClient;
@@ -11,6 +13,7 @@ import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+import retrofit.converter.GsonConverter;
 
 /**
  * Contains implementation of the REST client using Retrofit library
@@ -25,7 +28,12 @@ public final class RestClientRetrofit implements RestClient {
      * Constructor
      */
     public RestClientRetrofit() {
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapterFactory(new ItemTypeAdapterFactory())
+                .create();
+
         RestAdapter restAdapter = new RestAdapter.Builder()
+                .setConverter(new GsonConverter(gson))
                 .setLogLevel(RestAdapter.LogLevel.FULL)
                 .setEndpoint(Constants.REST_SERVICE)
                 .build();
@@ -43,7 +51,7 @@ public final class RestClientRetrofit implements RestClient {
     }
 
     @Override
-    public void getProjects(String projectId, final OnRestCallComplete<List<ProjectResponse>> callback) {
+    public void getProjects(final OnRestCallComplete<List<ProjectResponse>> callback) {
         mRestApiService.getProjects(new Callback<List<ProjectResponse>>() {
             @Override
             public void success(List<ProjectResponse> projectResponses, Response response) {
@@ -54,8 +62,8 @@ public final class RestClientRetrofit implements RestClient {
 
             @Override
             public void failure(RetrofitError error) {
-                if (callback != null) {
-                    callback.onFail(error.getResponse().getStatus(), error.getMessage());
+                if (callback != null && error != null) {
+                    callback.onFail(123, error.getMessage());
                 }
 
             }

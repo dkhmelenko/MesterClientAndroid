@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">MesterClientAndroid</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="projects_empty_list">No projects</string>
+    <string name="projects_loading">Loading...</string>
 </resources>

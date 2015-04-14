@@ -13,9 +13,7 @@ public interface RestClient {
 
     /**
      * Gets the list of available projects
-     *
-     * @param projectId Project ID
      */
-    void getProjects(String projectId, OnRestCallComplete<List<ProjectResponse>> callback);
+    void getProjects(OnRestCallComplete<List<ProjectResponse>> callback);
 
 }
