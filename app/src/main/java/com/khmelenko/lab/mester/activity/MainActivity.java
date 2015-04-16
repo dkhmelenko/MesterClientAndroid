@@ -1,7 +1,11 @@
 package com.khmelenko.lab.mester.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,10 +19,12 @@ import com.khmelenko.lab.mester.network.retrofit.RestClientRetrofit;
 import com.melnykov.fab.FloatingActionButton;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
+import org.parceler.transfuse.annotations.OnResume;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,39 +38,110 @@ import java.util.List;
 @OptionsMenu(R.menu.menu_main)
 public class MainActivity extends ActionBarActivity {
 
-    @ViewById
-    protected ListView projectsListView;
+    @ViewById(R.id.projectsListView)
+    ListView mProjectsListView;
+
+    @ViewById(R.id.projectsEmptyView)
+    TextView mProjectsEmptyView;
+
+    @ViewById(R.id.actionButtonAdd)
+    FloatingActionButton mActionButtonAdd;
+
+    @ViewById(R.id.addProjectProgressBar)
+    View mProgressBar;
 
     private ProjectsListAdapter mProjectsListAdapter;
     private List<ProjectResponse> mProjectsList;
-
-    @ViewById
-    protected TextView projectsEmptyView;
-
-    @ViewById
-    protected FloatingActionButton actionButtonAdd;
-
-    @ViewById
-    protected View progressBar;
+    private RestClient restClient;
 
     @AfterViews
     protected void init() {
+        restClient = new RestClientRetrofit();
         mProjectsList = new ArrayList<>();
         mProjectsListAdapter = new ProjectsListAdapter(this, mProjectsList);
         // during loading do not show the empty view text
-        projectsEmptyView.setText("");
-        projectsListView.setEmptyView(projectsEmptyView);
-        projectsListView.setAdapter(mProjectsListAdapter);
+        mProjectsEmptyView.setText("");
+        mProjectsListView.setEmptyView(mProjectsEmptyView);
+        mProjectsListView.setAdapter(mProjectsListAdapter);
 
-        actionButtonAdd.setOnClickListener(new View.OnClickListener() {
+        mProjectsListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onClick(View v) {
-                // TODO
-                Toast.makeText(MainActivity.this, "ActionButton", Toast.LENGTH_SHORT).show();
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                ProjectResponse toDelete = mProjectsList.get(position);
+                startDeletingProject(toDelete);
+                return false;
             }
         });
+    }
 
-        RestClient restClient = new RestClientRetrofit();
+    /**
+     * Initiates deletion project process
+     *
+     * @param project Project for deletion
+     */
+    private void startDeletingProject(final ProjectResponse project) {
+        String message = getString(R.string.delete_project_msg, project.getName());
+
+        AlertDialog alert = new AlertDialog.Builder(this)
+                .setTitle(R.string.delete_project_title)
+                .setMessage(message)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deleteProject(project);
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .show();
+    }
+
+    /**
+     * Deletes selected project
+     *
+     * @param projectToDelete Project for deletion
+     */
+    private void deleteProject(final ProjectResponse projectToDelete) {
+        mProgressBar.setVisibility(View.VISIBLE);
+
+        restClient.deleteProject(projectToDelete.getId(), new OnRestCallComplete() {
+            @Override
+            public void onSuccess(Object responseBody) {
+                mProjectsList.remove(projectToDelete);
+                mProjectsListAdapter.notifyDataSetChanged();
+
+                mProgressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFail(int errorCode, String message) {
+                mProgressBar.setVisibility(View.GONE);
+
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    @Click(R.id.actionButtonAdd)
+    protected void handleAddNewProject() {
+        Intent intent = new Intent(this, AddProjectActivity_.class);
+        startActivity(intent);
+    }
+
+    @OptionsItem(R.id.action_settings)
+    protected void handleActionSettings() {
+        // TODO
+        Toast.makeText(this, "SETTINGS", Toast.LENGTH_LONG).show();
+    }
+
+    @OnResume
+    protected void onResume() {
+        super.onResume();
+
         restClient.getProjects(new OnRestCallComplete<List<ProjectResponse>>() {
             @Override
             public void onSuccess(List<ProjectResponse> responseBody) {
@@ -72,22 +149,18 @@ public class MainActivity extends ActionBarActivity {
                 mProjectsList.addAll(responseBody);
                 mProjectsListAdapter.notifyDataSetChanged();
 
-                progressBar.setVisibility(View.GONE);
-                projectsEmptyView.setText(R.string.projects_empty_list);
+                mProgressBar.setVisibility(View.GONE);
+                mProjectsEmptyView.setText(R.string.projects_empty_list);
             }
 
             @Override
             public void onFail(int errorCode, String message) {
-                progressBar.setVisibility(View.GONE);
-                projectsEmptyView.setText(R.string.projects_empty_list);
+                mProgressBar.setVisibility(View.GONE);
+                mProjectsEmptyView.setText(R.string.projects_empty_list);
+
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
             }
         });
     }
-
-    @OptionsItem(R.id.action_settings)
-    protected void handleActionSettings() {
-        Toast.makeText(this, "SETTINGS", Toast.LENGTH_LONG).show();
-    }
-
 
 }

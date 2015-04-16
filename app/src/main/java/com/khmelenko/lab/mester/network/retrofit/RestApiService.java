@@ -28,10 +28,10 @@ interface RestApiService {
     public void getProjectById(@Path("id") String projectId, Callback<ProjectResponse> callback);
 
     @DELETE("/project/{id}")
-    public void deleteProjectById(@Path("id") String projectId, Callback callback);
+    public void deleteProjectById(@Path("id") String projectId, Callback<Object> callback);
 
     @POST("/project")
-    public void postProject(@Body ProjectRequest request, Callback<List<ProjectResponse>> callback);
+    public void postProject(@Body ProjectRequest request, Callback<Object> callback);
 
     @GET("/project/{id}/testcases")
     public void getProjectTestcases(@Path("id") String projectId, Callback<List<TestCaseResponse>> callback);

@@ -11,9 +11,11 @@ public final class Constants {
     private Constants() {
     }
 
+    public static final String PROJECTS_FILE_NAME = "ProjectsData";
+
     /**
      * Service URL
      */
-    public static final String REST_SERVICE = "TODO ADD service URL";
+    public static final String REST_SERVICE = "http://ec2-54-186-231-32.us-west-2.compute.amazonaws.com:8080";
 
 }
