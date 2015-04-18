@@ -40,8 +40,8 @@ interface RestApiService {
     public void getTestcaseById(@Path("id") String testcaseId, Callback<TestCaseResponse> callback);
 
     @DELETE("/testcase/{id}")
-    public void deleteTestcaseById(@Path("id") String testcaseId, Callback callback);
+    public void deleteTestcaseById(@Path("id") String testcaseId, Callback<Object> callback);
 
     @POST("/testcase")
-    public void postTestcase(@Body TestCaseRequest request, Callback callback);
+    public void postTestcase(@Body TestCaseRequest request, Callback<Object> callback);
 }

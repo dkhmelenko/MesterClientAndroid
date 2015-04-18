@@ -9,6 +9,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
+        <!-- Main screen -->
         <activity
             android:name=".activity.MainActivity_"
             android:label="@string/app_name" >
@@ -18,9 +20,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Add Project screen -->
         <activity
             android:name=".activity.AddProjectActivity_"
             android:label="@string/add_project_title" >
+        </activity>
+
+        <!-- TestCases screen -->
+        <activity
+            android:name=".activity.TestcasesActivity_"
+            android:label="@string/title_activity_testcases" >
+        </activity>
+
+        <!-- Add testcase screen -->
+        <activity
+            android:name=".activity.AddTestcaseActivity_"
+            android:label="@string/title_activity_add_testcase" >
         </activity>
     </application>
 

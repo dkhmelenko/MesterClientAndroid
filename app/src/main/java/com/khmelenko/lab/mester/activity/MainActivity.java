@@ -2,7 +2,6 @@ package com.khmelenko.lab.mester.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -44,19 +43,19 @@ public class MainActivity extends ActionBarActivity {
     @ViewById(R.id.projectsEmptyView)
     TextView mProjectsEmptyView;
 
-    @ViewById(R.id.actionButtonAdd)
-    FloatingActionButton mActionButtonAdd;
+    @ViewById(R.id.addProjectBtn)
+    FloatingActionButton mAddProjectBtn;
 
     @ViewById(R.id.addProjectProgressBar)
     View mProgressBar;
 
     private ProjectsListAdapter mProjectsListAdapter;
     private List<ProjectResponse> mProjectsList;
-    private RestClient restClient;
+    private RestClient mRestClient;
 
     @AfterViews
     protected void init() {
-        restClient = new RestClientRetrofit();
+        mRestClient = new RestClientRetrofit();
         mProjectsList = new ArrayList<>();
         mProjectsListAdapter = new ProjectsListAdapter(this, mProjectsList);
         // during loading do not show the empty view text
@@ -70,6 +69,16 @@ public class MainActivity extends ActionBarActivity {
                 ProjectResponse toDelete = mProjectsList.get(position);
                 startDeletingProject(toDelete);
                 return false;
+            }
+        });
+
+        mProjectsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ProjectResponse selected = mProjectsList.get(position);
+                TestcasesActivity_.intent(MainActivity.this)
+                        .extra(TestcasesActivity.EXTRA_PROJECT_NAME, selected.getName())
+                        .extra(TestcasesActivity.EXTRA_PROJECT_ID, selected.getId()).start();
             }
         });
     }
@@ -108,7 +117,7 @@ public class MainActivity extends ActionBarActivity {
     private void deleteProject(final ProjectResponse projectToDelete) {
         mProgressBar.setVisibility(View.VISIBLE);
 
-        restClient.deleteProject(projectToDelete.getId(), new OnRestCallComplete() {
+        mRestClient.deleteProject(projectToDelete.getId(), new OnRestCallComplete() {
             @Override
             public void onSuccess(Object responseBody) {
                 mProjectsList.remove(projectToDelete);
@@ -126,10 +135,9 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
-    @Click(R.id.actionButtonAdd)
+    @Click(R.id.addProjectBtn)
     protected void handleAddNewProject() {
-        Intent intent = new Intent(this, AddProjectActivity_.class);
-        startActivity(intent);
+        AddProjectActivity_.intent(this).start();
     }
 
     @OptionsItem(R.id.action_settings)
@@ -142,7 +150,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
 
-        restClient.getProjects(new OnRestCallComplete<List<ProjectResponse>>() {
+        mRestClient.getProjects(new OnRestCallComplete<List<ProjectResponse>>() {
             @Override
             public void onSuccess(List<ProjectResponse> responseBody) {
                 mProjectsList.clear();

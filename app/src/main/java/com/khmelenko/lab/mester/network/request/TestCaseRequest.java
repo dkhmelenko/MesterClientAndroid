@@ -22,4 +22,12 @@ public class TestCaseRequest {
     public String getTitle() {
         return title;
     }
+
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

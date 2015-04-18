@@ -1,6 +1,7 @@
 package com.khmelenko.lab.mester.network;
 
 import com.khmelenko.lab.mester.network.response.ProjectResponse;
+import com.khmelenko.lab.mester.network.response.TestCaseResponse;
 
 import java.util.List;
 
@@ -33,4 +34,29 @@ public interface RestClient {
      * @param callback  Callback
      */
     void deleteProject(String projectId, OnRestCallComplete callback);
+
+    /**
+     * Gets the list of the project testcases
+     *
+     * @param projectId Project ID
+     * @param callback  Callback with the response
+     */
+    void getTestcases(String projectId, OnRestCallComplete<List<TestCaseResponse>> callback);
+
+    /**
+     * Adds new testcase
+     *
+     * @param projectId     Project ID
+     * @param testcaseTitle Title of the new testcase
+     * @param callback      Callback with the response
+     */
+    void addTestcase(String projectId, String testcaseTitle, OnRestCallComplete callback);
+
+    /**
+     * Deletes testcase by ID
+     *
+     * @param testcaseId Testcase ID
+     * @param callback   Callback
+     */
+    void deleteTestcase(String testcaseId, OnRestCallComplete callback);
 }

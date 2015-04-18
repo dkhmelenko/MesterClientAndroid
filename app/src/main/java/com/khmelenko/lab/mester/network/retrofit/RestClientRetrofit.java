@@ -8,7 +8,9 @@ import com.khmelenko.lab.mester.common.Constants;
 import com.khmelenko.lab.mester.network.OnRestCallComplete;
 import com.khmelenko.lab.mester.network.RestClient;
 import com.khmelenko.lab.mester.network.request.ProjectRequest;
+import com.khmelenko.lab.mester.network.request.TestCaseRequest;
 import com.khmelenko.lab.mester.network.response.ProjectResponse;
+import com.khmelenko.lab.mester.network.response.TestCaseResponse;
 
 import java.util.List;
 
@@ -68,6 +70,24 @@ public final class RestClientRetrofit implements RestClient {
     @Override
     public void deleteProject(String projectId, OnRestCallComplete callback) {
         mRestApiService.deleteProjectById(projectId, handleResponse(callback));
+    }
+
+    @Override
+    public void getTestcases(String projectId, OnRestCallComplete<List<TestCaseResponse>> callback) {
+        mRestApiService.getProjectTestcases(projectId, handleResponse(callback));
+    }
+
+    @Override
+    public void addTestcase(String projectId, String testcaseTitle, OnRestCallComplete callback) {
+        TestCaseRequest request = new TestCaseRequest();
+        request.setProjectId(projectId);
+        request.setTitle(testcaseTitle);
+        mRestApiService.postTestcase(request, handleResponse(callback));
+    }
+
+    @Override
+    public void deleteTestcase(String testcaseId, OnRestCallComplete callback) {
+        mRestApiService.deleteTestcaseById(testcaseId, handleResponse(callback));
     }
 
     /**

@@ -40,7 +40,7 @@
     </LinearLayout>
 
     <com.melnykov.fab.FloatingActionButton
-        android:id="@+id/actionButtonAdd"
+        android:id="@+id/addProjectBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"

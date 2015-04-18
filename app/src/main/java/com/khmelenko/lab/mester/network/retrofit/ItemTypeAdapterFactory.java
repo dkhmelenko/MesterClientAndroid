@@ -11,8 +11,14 @@ import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
 
-
+/**
+ * Extracts the object from the specific section in JSON object
+ *
+ * @author Dmytro Khmelenko
+ */
 class ItemTypeAdapterFactory implements TypeAdapterFactory {
+
+    private static final String RESULT_SECTION = "result";
 
     public <T> TypeAdapter<T> create(Gson gson, final TypeToken<T> type) {
 
@@ -32,9 +38,8 @@ class ItemTypeAdapterFactory implements TypeAdapterFactory {
                 JsonElement jsonElement = elementAdapter.read(in);
                 if (jsonElement.isJsonObject()) {
                     JsonObject jsonObject = jsonElement.getAsJsonObject();
-                    if (jsonObject.has("result"))
-                    {
-                        jsonElement = jsonObject.get("result");
+                    if (jsonObject.has(RESULT_SECTION)) {
+                        jsonElement = jsonObject.get(RESULT_SECTION);
                     }
                 }
 
