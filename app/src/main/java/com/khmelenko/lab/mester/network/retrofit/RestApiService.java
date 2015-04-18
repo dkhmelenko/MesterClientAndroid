@@ -1,8 +1,10 @@
 package com.khmelenko.lab.mester.network.retrofit;
 
 import com.khmelenko.lab.mester.network.request.ProjectRequest;
+import com.khmelenko.lab.mester.network.request.StepRequest;
 import com.khmelenko.lab.mester.network.request.TestCaseRequest;
 import com.khmelenko.lab.mester.network.response.ProjectResponse;
+import com.khmelenko.lab.mester.network.response.StepResponse;
 import com.khmelenko.lab.mester.network.response.TestCaseResponse;
 
 import java.util.List;
@@ -44,4 +46,13 @@ interface RestApiService {
 
     @POST("/testcase")
     public void postTestcase(@Body TestCaseRequest request, Callback<Object> callback);
+
+    @GET("/testcase/{id}/steps")
+    public void getTestcaseSteps(@Path("id") String testcaseId, Callback<List<StepResponse>> callback);
+
+    @DELETE("/step/{id}")
+    public void deleteStepById(@Path("id") String stepId, Callback<Object> callback);
+
+    @POST("/step")
+    public void postStep(@Body StepRequest request, Callback<Object> callback);
 }

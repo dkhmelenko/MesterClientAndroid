@@ -12,23 +12,23 @@ import java.util.Date;
 public class ProjectResponse {
 
     @SerializedName("id")
-    private String id;
+    private String mId;
 
     @SerializedName("name")
-    private String name;
+    private String mName;
 
     @SerializedName("creationDate")
-    private String creationDate;
+    private String mCreationDate;
 
     public String getId() {
-        return id;
+        return mId;
     }
 
     public String getName() {
-        return name;
+        return mName;
     }
 
     public String getCreationDate() {
-        return creationDate;
+        return mCreationDate;
     }
 }

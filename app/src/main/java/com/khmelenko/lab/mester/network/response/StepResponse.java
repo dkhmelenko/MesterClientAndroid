@@ -10,37 +10,37 @@ import com.google.gson.annotations.SerializedName;
 public class StepResponse {
 
     @SerializedName("id")
-    private String id;
+    private String mId;
 
     @SerializedName("number")
-    private int number;
+    private int mNumber;
 
     @SerializedName("text")
-    private String text;
+    private String mText;
 
     @SerializedName("creationDate")
-    private String creationDate;
+    private String mCreationDate;
 
     @SerializedName("testCaseId")
-    private String testCaseId;
+    private String mTestCaseId;
 
     public String getId() {
-        return id;
+        return mId;
     }
 
     public int getNumber() {
-        return number;
+        return mNumber;
     }
 
     public String getText() {
-        return text;
+        return mText;
     }
 
     public String getCreationDate() {
-        return creationDate;
+        return mCreationDate;
     }
 
     public String getTestCaseId() {
-        return testCaseId;
+        return mTestCaseId;
     }
 }

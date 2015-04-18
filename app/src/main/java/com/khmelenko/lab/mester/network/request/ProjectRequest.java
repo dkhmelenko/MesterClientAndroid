@@ -10,13 +10,13 @@ import com.google.gson.annotations.SerializedName;
 public class ProjectRequest {
 
     @SerializedName("name")
-    private String name;
+    private String mName;
 
     public String getName() {
-        return name;
+        return mName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        mName = name;
     }
 }

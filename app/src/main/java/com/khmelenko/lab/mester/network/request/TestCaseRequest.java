@@ -10,24 +10,24 @@ import com.google.gson.annotations.SerializedName;
 public class TestCaseRequest {
 
     @SerializedName("projectId")
-    private String projectId;
+    private String mProjectId;
 
     @SerializedName("title")
-    private String title;
+    private String mTitle;
 
     public String getProjectId() {
-        return projectId;
+        return mProjectId;
     }
 
     public String getTitle() {
-        return title;
+        return mTitle;
     }
 
     public void setProjectId(String projectId) {
-        this.projectId = projectId;
+        mProjectId = projectId;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        mTitle = title;
     }
 }

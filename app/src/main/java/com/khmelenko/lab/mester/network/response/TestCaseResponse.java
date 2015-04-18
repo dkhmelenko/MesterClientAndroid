@@ -12,37 +12,37 @@ import java.util.List;
 public class TestCaseResponse {
 
     @SerializedName("id")
-    private String id;
+    private String mId;
 
     @SerializedName("title")
-    private String title;
+    private String mTitle;
 
     @SerializedName("creationDate")
-    private String creationDate;
+    private String mCreationDate;
 
     @SerializedName("projectId")
-    private String projectId;
+    private String mProjectId;
 
     @SerializedName("steps")
-    private List<StepResponse> steps;
+    private List<StepResponse> mSteps;
 
     public String getId() {
-        return id;
+        return mId;
     }
 
     public String getTitle() {
-        return title;
+        return mTitle;
     }
 
     public String getCreationDate() {
-        return creationDate;
+        return mCreationDate;
     }
 
     public String getProjectId() {
-        return projectId;
+        return mProjectId;
     }
 
     public List<StepResponse> getSteps() {
-        return steps;
+        return mSteps;
     }
 }

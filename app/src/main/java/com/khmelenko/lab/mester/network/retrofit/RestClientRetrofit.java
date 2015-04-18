@@ -8,8 +8,10 @@ import com.khmelenko.lab.mester.common.Constants;
 import com.khmelenko.lab.mester.network.OnRestCallComplete;
 import com.khmelenko.lab.mester.network.RestClient;
 import com.khmelenko.lab.mester.network.request.ProjectRequest;
+import com.khmelenko.lab.mester.network.request.StepRequest;
 import com.khmelenko.lab.mester.network.request.TestCaseRequest;
 import com.khmelenko.lab.mester.network.response.ProjectResponse;
+import com.khmelenko.lab.mester.network.response.StepResponse;
 import com.khmelenko.lab.mester.network.response.TestCaseResponse;
 
 import java.util.List;
@@ -88,6 +90,25 @@ public final class RestClientRetrofit implements RestClient {
     @Override
     public void deleteTestcase(String testcaseId, OnRestCallComplete callback) {
         mRestApiService.deleteTestcaseById(testcaseId, handleResponse(callback));
+    }
+
+    @Override
+    public void getTestcaseSteps(String testcaseId, OnRestCallComplete<List<StepResponse>> callback) {
+        mRestApiService.getTestcaseSteps(testcaseId, handleResponse(callback));
+    }
+
+    @Override
+    public void addStep(String testcaseId, int stepNumber, String stepText, OnRestCallComplete callback) {
+        StepRequest request = new StepRequest();
+        request.setTestcaseId(testcaseId);
+        request.setNumber(stepNumber);
+        request.setText(stepText);
+        mRestApiService.postStep(request, handleResponse(callback));
+    }
+
+    @Override
+    public void deleteStep(String stepId, OnRestCallComplete callback) {
+        mRestApiService.deleteStepById(stepId, handleResponse(callback));
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.khmelenko.lab.mester.network;
 
 import com.khmelenko.lab.mester.network.response.ProjectResponse;
+import com.khmelenko.lab.mester.network.response.StepResponse;
 import com.khmelenko.lab.mester.network.response.TestCaseResponse;
 
 import java.util.List;
@@ -59,4 +60,30 @@ public interface RestClient {
      * @param callback   Callback
      */
     void deleteTestcase(String testcaseId, OnRestCallComplete callback);
+
+    /**
+     * Gets the list of the testcase steps
+     *
+     * @param testcaseId Testcase ID
+     * @param callback   Callback with the response
+     */
+    void getTestcaseSteps(String testcaseId, OnRestCallComplete<List<StepResponse>> callback);
+
+    /**
+     * Adds new step to the testcase
+     *
+     * @param testcaseId Testcase ID
+     * @param stepNumber Number of the step
+     * @param stepText   Text description of the step
+     * @param callback   Callback with the response
+     */
+    void addStep(String testcaseId, int stepNumber, String stepText, OnRestCallComplete callback);
+
+    /**
+     * Deletes testcase step by ID
+     *
+     * @param stepId   Step ID
+     * @param callback Callback
+     */
+    void deleteStep(String stepId, OnRestCallComplete callback);
 }
