@@ -26,4 +26,17 @@
     <string name="add_testcase_done_btn">Done</string>
     <string name="add_testcase_name">Testcase title</string>
 
+    <!-- Steps -->
+    <string name="title_activity_steps">Steps</string>
+    <string name="steps_empty_list">No steps</string>
+    <string name="steps_loading">Loading...</string>
+    <string name="steps_testcase_title">Testcase: %1$s</string>
+    <string name="delete_step_msg">Would you like to delete step %1$s?</string>
+    <string name="delete_step_title">Delete step</string>
+
+    <!-- Add step -->
+    <string name="title_activity_add_step">AddStepActivity</string>
+    <string name="add_step_number">Step number</string>
+    <string name="add_step_text">Step text</string>
+
 </resources>

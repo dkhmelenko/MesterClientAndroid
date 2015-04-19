@@ -2,7 +2,6 @@ package com.khmelenko.lab.mester.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -62,11 +61,11 @@ public class TestcasesActivity extends ActionBarActivity {
 
     private TestcasesListAdapter mTestcaseListAdapter;
     private List<TestCaseResponse> mTestcasesList;
-    private RestClient restClient;
+    private RestClient mRestClient;
 
     @AfterViews
     protected void init() {
-        restClient = new RestClientRetrofit();
+        mRestClient = new RestClientRetrofit();
 
         String projectName = getString(R.string.testcases_project_name, mProjectName);
         mTestcaseProjectName.setText(projectName);
@@ -84,6 +83,16 @@ public class TestcasesActivity extends ActionBarActivity {
                 TestCaseResponse toDelete = mTestcasesList.get(position);
                 startDeletingTestcase(toDelete);
                 return false;
+            }
+        });
+
+        mTestcasesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TestCaseResponse selected = mTestcasesList.get(position);
+                StepsActivity_.intent(TestcasesActivity.this)
+                        .extra(StepsActivity.EXTRA_TESTCASE_TITLE, selected.getTitle())
+                        .extra(StepsActivity.EXTRA_TESTCASE_ID, selected.getId()).start();
             }
         });
     }
@@ -122,7 +131,7 @@ public class TestcasesActivity extends ActionBarActivity {
     private void deleteTestcase(final TestCaseResponse testcaseToDelete) {
         mProgressBar.setVisibility(View.VISIBLE);
 
-        restClient.deleteTestcase(testcaseToDelete.getId(), new OnRestCallComplete() {
+        mRestClient.deleteTestcase(testcaseToDelete.getId(), new OnRestCallComplete() {
             @Override
             public void onSuccess(Object responseBody) {
                 mTestcasesList.remove(testcaseToDelete);
@@ -151,7 +160,7 @@ public class TestcasesActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
 
-        restClient.getTestcases(mProjectId, new OnRestCallComplete<List<TestCaseResponse>>() {
+        mRestClient.getTestcases(mProjectId, new OnRestCallComplete<List<TestCaseResponse>>() {
             @Override
             public void onSuccess(List<TestCaseResponse> responseBody) {
                 mTestcasesList.clear();

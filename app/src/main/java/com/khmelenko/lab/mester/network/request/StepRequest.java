@@ -12,7 +12,7 @@ public class StepRequest {
     @SerializedName("number")
     private int mNumber;
 
-    @SerializedName("testcaseId")
+    @SerializedName("testCaseId")
     private String mTestcaseId;
 
     @SerializedName("text")

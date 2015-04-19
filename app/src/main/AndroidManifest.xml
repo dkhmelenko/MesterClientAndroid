@@ -38,6 +38,18 @@
             android:name=".activity.AddTestcaseActivity_"
             android:label="@string/title_activity_add_testcase" >
         </activity>
+
+        <!-- Steps screen -->
+        <activity
+            android:name=".activity.StepsActivity_"
+            android:label="@string/title_activity_steps" >
+        </activity>
+
+        <!-- Add step screen -->
+        <activity
+            android:name=".activity.AddStepActivity_"
+            android:label="@string/title_activity_add_step" >
+        </activity>
     </application>
 
 </manifest>
