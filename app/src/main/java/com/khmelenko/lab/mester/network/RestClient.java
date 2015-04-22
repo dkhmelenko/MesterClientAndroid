@@ -14,6 +14,13 @@ import java.util.List;
 public interface RestClient {
 
     /**
+     * Sets endpoint for the REST client
+     *
+     * @param endpoint Endpoint
+     */
+    void setEndpoint(String endpoint);
+
+    /**
      * Gets the list of available projects
      *
      * @param callback Callback with the response

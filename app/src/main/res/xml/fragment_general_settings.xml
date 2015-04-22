@@ -1,0 +1,14 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/settings_general_header">
+
+        <EditTextPreference
+            android:key="settings_service_url"
+            android:title="@string/settings_service_url"
+            android:selectAllOnFocus="true"
+            android:inputType="textUri"
+            android:maxLines="1"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

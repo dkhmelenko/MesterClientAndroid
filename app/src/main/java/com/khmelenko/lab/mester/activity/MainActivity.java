@@ -2,7 +2,9 @@ package com.khmelenko.lab.mester.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -11,10 +13,9 @@ import android.widget.Toast;
 
 import com.khmelenko.lab.mester.R;
 import com.khmelenko.lab.mester.adapter.ProjectsListAdapter;
+import com.khmelenko.lab.mester.common.Constants;
 import com.khmelenko.lab.mester.network.OnRestCallComplete;
-import com.khmelenko.lab.mester.network.RestClient;
 import com.khmelenko.lab.mester.network.response.ProjectResponse;
-import com.khmelenko.lab.mester.network.retrofit.RestClientRetrofit;
 import com.melnykov.fab.FloatingActionButton;
 
 import org.androidannotations.annotations.AfterViews;
@@ -27,8 +28,6 @@ import org.parceler.transfuse.annotations.OnResume;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.inject.Inject;
 
 
 /**
@@ -55,13 +54,10 @@ public class MainActivity extends BaseActivity {
     private ProjectsListAdapter mProjectsListAdapter;
     private List<ProjectResponse> mProjectsList;
 
-
-   // @Inject
-     // RestClient mRestClient;
-
     @AfterViews
     protected void init() {
-       // mRestClient = new RestClientRetrofit();
+        loadDefaultAppSettings();
+
         mProjectsList = new ArrayList<>();
         mProjectsListAdapter = new ProjectsListAdapter(this, mProjectsList);
         // during loading do not show the empty view text
@@ -87,6 +83,29 @@ public class MainActivity extends BaseActivity {
                         .extra(TestcasesActivity.EXTRA_PROJECT_ID, selected.getId()).start();
             }
         });
+    }
+
+    /**
+     * Loads default application settings
+     */
+    private void loadDefaultAppSettings() {
+        String serviceUrl = getServiceUrlFromSettings();
+        if (serviceUrl.isEmpty()) {
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+            editor.putString(SettingsActivity.SERVICE_URL_KEY, Constants.DEFAULT_REST_SERVICE);
+            editor.apply();
+        }
+    }
+
+    /**
+     * Gets service URL from application settings
+     *
+     * @return Service URL
+     */
+    private String getServiceUrlFromSettings() {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String serviceUrl = sharedPref.getString(SettingsActivity.SERVICE_URL_KEY, "");
+        return serviceUrl;
     }
 
     /**
@@ -148,13 +167,15 @@ public class MainActivity extends BaseActivity {
 
     @OptionsItem(R.id.action_settings)
     protected void handleActionSettings() {
-        // TODO
-        Toast.makeText(this, "SETTINGS", Toast.LENGTH_LONG).show();
+        startActivity(new Intent(this, SettingsActivity.class));
     }
 
     @OnResume
     protected void onResume() {
         super.onResume();
+
+        String serviceUrl = getServiceUrlFromSettings();
+        mRestClient.setEndpoint(serviceUrl);
 
         mRestClient.getProjects(new OnRestCallComplete<List<ProjectResponse>>() {
             @Override

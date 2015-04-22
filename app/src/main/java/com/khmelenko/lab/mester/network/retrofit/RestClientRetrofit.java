@@ -35,6 +35,16 @@ public final class RestClientRetrofit implements RestClient {
      * Constructor
      */
     public RestClientRetrofit() {
+        RestAdapter restAdapter = createRestAdapter(Constants.DEFAULT_REST_SERVICE);
+        mRestApiService = restAdapter.create(RestApiService.class);
+    }
+
+    /**
+     * Creates REST adapter instance
+     *
+     * @param endpoint Endpoint
+     */
+    private RestAdapter createRestAdapter(String endpoint) {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapterFactory(new ItemTypeAdapterFactory())
                 .create();
@@ -42,19 +52,20 @@ public final class RestClientRetrofit implements RestClient {
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setConverter(new GsonConverter(gson))
                 .setLogLevel(RestAdapter.LogLevel.FULL)
-                .setEndpoint(Constants.REST_SERVICE)
+                .setEndpoint(endpoint)
                 .build();
 
-        mRestApiService = restAdapter.create(RestApiService.class);
+        return restAdapter;
     }
 
-    /**
-     * Gets REST API service
-     *
-     * @return Rest API service
-     */
-    public RestApiService getRestApiService() {
-        return mRestApiService;
+    @Override
+    public void setEndpoint(String endpoint) {
+        if(endpoint == null || endpoint.length() == 0) {
+            throw new IllegalArgumentException("Endpoint cannot be null or empty!");
+        }
+
+        RestAdapter restAdapter = createRestAdapter(endpoint);
+        mRestApiService = restAdapter.create(RestApiService.class);
     }
 
     @Override
