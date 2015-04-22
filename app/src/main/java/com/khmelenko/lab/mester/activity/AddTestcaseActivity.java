@@ -21,7 +21,7 @@ import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.activity_add_testcase)
-public class AddTestcaseActivity extends ActionBarActivity {
+public class AddTestcaseActivity extends BaseActivity {
 
     public static final String EXTRA_PROJECT_ID = "ProjectId";
 
@@ -62,8 +62,7 @@ public class AddTestcaseActivity extends ActionBarActivity {
 
         String testcaseTitle = mTestcaseTitle.getText().toString();
 
-        RestClient restClient = new RestClientRetrofit();
-        restClient.addTestcase(mProjectId, testcaseTitle, new OnRestCallComplete() {
+        mRestClient.addTestcase(mProjectId, testcaseTitle, new OnRestCallComplete() {
             @Override
             public void onSuccess(Object obj) {
 

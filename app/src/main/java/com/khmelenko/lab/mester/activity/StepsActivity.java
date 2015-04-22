@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @EActivity(R.layout.activity_steps)
-public class StepsActivity extends ActionBarActivity {
+public class StepsActivity extends BaseActivity {
 
     public static final String EXTRA_TESTCASE_TITLE = "TestcaseTitle";
     public static final String EXTRA_TESTCASE_ID = "TestcaseId";
@@ -57,7 +57,6 @@ public class StepsActivity extends ActionBarActivity {
 
     private StepsListAdapter mStepsListAdapter;
     private List<StepResponse> mStepsList;
-    private RestClient mRestClient;
 
     @AfterViews
     protected void init() {

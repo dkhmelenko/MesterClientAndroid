@@ -16,6 +16,6 @@ public final class Constants {
     /**
      * Service URL
      */
-    public static final String REST_SERVICE = "YOUR_ADDRESS_OF_THE_REST_SERVICE";
+    public static final String REST_SERVICE = "http://ec2-54-186-231-32.us-west-2.compute.amazonaws.com:8080";
 
 }

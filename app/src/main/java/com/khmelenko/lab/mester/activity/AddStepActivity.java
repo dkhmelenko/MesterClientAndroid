@@ -21,7 +21,7 @@ import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.activity_add_step)
-public class AddStepActivity extends ActionBarActivity {
+public class AddStepActivity extends BaseActivity {
 
     public static final String EXTRA_TESTCASE_ID = "TestcaseId";
 
@@ -79,8 +79,7 @@ public class AddStepActivity extends ActionBarActivity {
         int stepNumber = Integer.parseInt(mStepNumber.getText().toString());
         String stepText = mStepText.getText().toString();
 
-        RestClient restClient = new RestClientRetrofit();
-        restClient.addStep(mTestcaseId, stepNumber, stepText, new OnRestCallComplete() {
+        mRestClient.addStep(mTestcaseId, stepNumber, stepText, new OnRestCallComplete() {
             @Override
             public void onSuccess(Object obj) {
 

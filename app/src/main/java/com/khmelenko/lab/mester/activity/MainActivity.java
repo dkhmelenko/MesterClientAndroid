@@ -28,6 +28,9 @@ import org.parceler.transfuse.annotations.OnResume;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
+
 /**
  * Main application activity
  *
@@ -35,7 +38,7 @@ import java.util.List;
  */
 @EActivity(R.layout.activity_main)
 @OptionsMenu(R.menu.menu_main)
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends BaseActivity {
 
     @ViewById(R.id.projectsListView)
     ListView mProjectsListView;
@@ -51,11 +54,14 @@ public class MainActivity extends ActionBarActivity {
 
     private ProjectsListAdapter mProjectsListAdapter;
     private List<ProjectResponse> mProjectsList;
-    private RestClient mRestClient;
+
+
+   // @Inject
+     // RestClient mRestClient;
 
     @AfterViews
     protected void init() {
-        mRestClient = new RestClientRetrofit();
+       // mRestClient = new RestClientRetrofit();
         mProjectsList = new ArrayList<>();
         mProjectsListAdapter = new ProjectsListAdapter(this, mProjectsList);
         // during loading do not show the empty view text

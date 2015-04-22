@@ -26,7 +26,7 @@ import org.androidannotations.annotations.ViewById;
 import java.util.List;
 
 @EActivity(R.layout.activity_add_project)
-public class AddProjectActivity extends ActionBarActivity {
+public class AddProjectActivity extends BaseActivity {
 
     @ViewById(R.id.addProjectName)
     EditText mProjectName;
@@ -62,8 +62,7 @@ public class AddProjectActivity extends ActionBarActivity {
 
         String projectName = mProjectName.getText().toString();
 
-        RestClient restClient = new RestClientRetrofit();
-        restClient.addProject(projectName, new OnRestCallComplete() {
+        mRestClient.addProject(projectName, new OnRestCallComplete() {
             @Override
             public void onSuccess(Object obj) {
 

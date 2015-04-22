@@ -33,7 +33,7 @@ import java.util.List;
  * @author Dmytro Khmelenko
  */
 @EActivity(R.layout.activity_testcases)
-public class TestcasesActivity extends ActionBarActivity {
+public class TestcasesActivity extends BaseActivity {
 
     public static final String EXTRA_PROJECT_NAME = "ProjectName";
     public static final String EXTRA_PROJECT_ID = "ProjectId";
@@ -61,7 +61,6 @@ public class TestcasesActivity extends ActionBarActivity {
 
     private TestcasesListAdapter mTestcaseListAdapter;
     private List<TestCaseResponse> mTestcasesList;
-    private RestClient mRestClient;
 
     @AfterViews
     protected void init() {
