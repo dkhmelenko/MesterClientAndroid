@@ -6,6 +6,7 @@ Application should provide the following features:
 - Adding test steps for each testcase
 - Passing tests manually (under development)
 - Posting test results to the server (under development)
+All structures of the requests/responses and their descriptions are available [here](https://github.com/art-divin/mester-rest-api/wiki/Domain-JSON)
 
 #Used libraries
 - [Android appcompat v7](https://github.com/android/platform_frameworks_support/tree/master/v7/appcompat)
