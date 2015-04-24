@@ -16,6 +16,6 @@ public final class Constants {
     /**
      * Service URL
      */
-    public static final String REST_SERVICE = "TODO Add your service URL here";
+    public static final String DEFAULT_REST_SERVICE = "TODO Add your service URL here";
 
 }
