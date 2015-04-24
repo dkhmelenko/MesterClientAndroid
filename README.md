@@ -1,4 +1,6 @@
 # Project description
+[![Build Status on Travis:](https://travis-ci.org/brave-warrior/MesterClientAndroid.svg?branch=master)](https://travis-ci.org/brave-warrior/MesterClientAndroid)
+
 This project is implementation of the [Mester Web Service](https://github.com/art-divin/mester-rest-api) for Android platform.
 Application should provide the following features:
 - Adding/removing project
