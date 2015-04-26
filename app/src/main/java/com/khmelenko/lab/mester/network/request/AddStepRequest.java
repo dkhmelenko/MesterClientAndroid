@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  *
  * @author Dmytro Khmelenko
  */
-public class StepRequest {
+public class AddStepRequest {
 
     @SerializedName("number")
     private int mNumber;

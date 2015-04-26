@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  *
  * @author Dmytro Khmelenko
  */
-public class TestCaseRequest {
+public class AddTestCaseRequest {
 
     @SerializedName("projectId")
     private String mProjectId;

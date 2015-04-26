@@ -1,8 +1,10 @@
 package com.khmelenko.lab.mester.network;
 
+import com.khmelenko.lab.mester.network.request.PostTestingTestCaseRequest;
 import com.khmelenko.lab.mester.network.response.ProjectResponse;
 import com.khmelenko.lab.mester.network.response.StepResponse;
 import com.khmelenko.lab.mester.network.response.TestCaseResponse;
+import com.khmelenko.lab.mester.network.response.TestingResponse;
 
 import java.util.List;
 
@@ -93,4 +95,22 @@ public interface RestClient {
      * @param callback Callback
      */
     void deleteStep(String stepId, OnRestCallComplete callback);
+
+    /**
+     * Gets testing results for specific project
+     *
+     * @param projectId Project ID
+     * @param callback  Callback
+     */
+    void getTestingResults(String projectId, OnRestCallComplete<List<TestingResponse>> callback);
+
+    /**
+     * Posts testing testcase results
+     *
+     * @param projectId Project ID
+     * @param testcase  Testcase results
+     * @param callback  Callback
+     */
+    void postTestingResults(String projectId, PostTestingTestCaseRequest testcase,
+                            OnRestCallComplete<List<TestingResponse>> callback);
 }

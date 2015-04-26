@@ -7,13 +7,19 @@ import com.google.gson.GsonBuilder;
 import com.khmelenko.lab.mester.common.Constants;
 import com.khmelenko.lab.mester.network.OnRestCallComplete;
 import com.khmelenko.lab.mester.network.RestClient;
-import com.khmelenko.lab.mester.network.request.ProjectRequest;
-import com.khmelenko.lab.mester.network.request.StepRequest;
-import com.khmelenko.lab.mester.network.request.TestCaseRequest;
+import com.khmelenko.lab.mester.network.request.AddProjectRequest;
+import com.khmelenko.lab.mester.network.request.AddStepRequest;
+import com.khmelenko.lab.mester.network.request.AddTestCaseRequest;
+import com.khmelenko.lab.mester.network.request.PostTestingRequest;
+import com.khmelenko.lab.mester.network.request.PostTestingTestCaseRequest;
 import com.khmelenko.lab.mester.network.response.ProjectResponse;
 import com.khmelenko.lab.mester.network.response.StepResponse;
 import com.khmelenko.lab.mester.network.response.TestCaseResponse;
+import com.khmelenko.lab.mester.network.response.TestingResponse;
+import com.khmelenko.lab.mester.network.response.TestingTestCaseResponse;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import retrofit.Callback;
@@ -75,7 +81,7 @@ public final class RestClientRetrofit implements RestClient {
 
     @Override
     public void addProject(String projectName, final OnRestCallComplete callback) {
-        ProjectRequest request = new ProjectRequest();
+        AddProjectRequest request = new AddProjectRequest();
         request.setName(projectName);
         mRestApiService.postProject(request, handleResponse(callback));
     }
@@ -92,7 +98,7 @@ public final class RestClientRetrofit implements RestClient {
 
     @Override
     public void addTestcase(String projectId, String testcaseTitle, OnRestCallComplete callback) {
-        TestCaseRequest request = new TestCaseRequest();
+        AddTestCaseRequest request = new AddTestCaseRequest();
         request.setProjectId(projectId);
         request.setTitle(testcaseTitle);
         mRestApiService.postTestcase(request, handleResponse(callback));
@@ -110,7 +116,7 @@ public final class RestClientRetrofit implements RestClient {
 
     @Override
     public void addStep(String testcaseId, int stepNumber, String stepText, OnRestCallComplete callback) {
-        StepRequest request = new StepRequest();
+        AddStepRequest request = new AddStepRequest();
         request.setTestcaseId(testcaseId);
         request.setNumber(stepNumber);
         request.setText(stepText);
@@ -120,6 +126,19 @@ public final class RestClientRetrofit implements RestClient {
     @Override
     public void deleteStep(String stepId, OnRestCallComplete callback) {
         mRestApiService.deleteStepById(stepId, handleResponse(callback));
+    }
+
+    @Override
+    public void getTestingResults(String projectId, OnRestCallComplete<List<TestingResponse>> callback) {
+        mRestApiService.getTestingResults(projectId, handleResponse(callback));
+    }
+
+    @Override
+    public void postTestingResults(String projectId, PostTestingTestCaseRequest testcase, OnRestCallComplete<List<TestingResponse>> callback) {
+        PostTestingRequest request = new PostTestingRequest();
+        List<PostTestingTestCaseRequest> testcases = Arrays.asList(testcase);
+        request.setTestCases(testcases);
+        mRestApiService.postTestingResults(projectId, request, handleResponse(callback));
     }
 
     /**

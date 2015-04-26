@@ -1,11 +1,13 @@
 package com.khmelenko.lab.mester.network.retrofit;
 
-import com.khmelenko.lab.mester.network.request.ProjectRequest;
-import com.khmelenko.lab.mester.network.request.StepRequest;
-import com.khmelenko.lab.mester.network.request.TestCaseRequest;
+import com.khmelenko.lab.mester.network.request.AddProjectRequest;
+import com.khmelenko.lab.mester.network.request.AddStepRequest;
+import com.khmelenko.lab.mester.network.request.AddTestCaseRequest;
+import com.khmelenko.lab.mester.network.request.PostTestingRequest;
 import com.khmelenko.lab.mester.network.response.ProjectResponse;
 import com.khmelenko.lab.mester.network.response.StepResponse;
 import com.khmelenko.lab.mester.network.response.TestCaseResponse;
+import com.khmelenko.lab.mester.network.response.TestingResponse;
 
 import java.util.List;
 
@@ -33,7 +35,7 @@ interface RestApiService {
     public void deleteProjectById(@Path("id") String projectId, Callback<Object> callback);
 
     @POST("/project")
-    public void postProject(@Body ProjectRequest request, Callback<Object> callback);
+    public void postProject(@Body AddProjectRequest request, Callback<Object> callback);
 
     @GET("/project/{id}/testcases")
     public void getProjectTestcases(@Path("id") String projectId, Callback<List<TestCaseResponse>> callback);
@@ -45,7 +47,7 @@ interface RestApiService {
     public void deleteTestcaseById(@Path("id") String testcaseId, Callback<Object> callback);
 
     @POST("/testcase")
-    public void postTestcase(@Body TestCaseRequest request, Callback<Object> callback);
+    public void postTestcase(@Body AddTestCaseRequest request, Callback<Object> callback);
 
     @GET("/testcase/{id}/steps")
     public void getTestcaseSteps(@Path("id") String testcaseId, Callback<List<StepResponse>> callback);
@@ -54,5 +56,12 @@ interface RestApiService {
     public void deleteStepById(@Path("id") String stepId, Callback<Object> callback);
 
     @POST("/step")
-    public void postStep(@Body StepRequest request, Callback<Object> callback);
+    public void postStep(@Body AddStepRequest request, Callback<Object> callback);
+
+    @GET("/project/{id}/tests")
+    public void getTestingResults(@Path("id") String projectId, Callback<List<TestingResponse>> callback);
+
+    @POST("/test/{id}/submit")
+    public void postTestingResults(@Path("id") String projectId, @Body PostTestingRequest request,
+                                   Callback<List<TestingResponse>> callback);
 }
