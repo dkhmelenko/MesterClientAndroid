@@ -43,5 +43,15 @@
     <string name="title_activity_settings">Settings</string>
     <string name="settings_general_header">General</string>
     <string name="settings_service_url">Service URL</string>
+    <string name="title_activity_project_management">ProjectManagementActivity</string>
+
+    <!-- Project management -->
+    <string name="project_management_testcases">Manage testcases</string>
+    <string name="project_management_testing">Testing</string>
+
+    <!-- Testing results -->
+    <string name="title_activity_testing_results">Testing results</string>
+    <string name="testing_results_empty_list">No tests</string>
+    <string name="testing_results_loading">Loading...</string>
 
 </resources>

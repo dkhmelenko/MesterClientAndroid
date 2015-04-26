@@ -134,11 +134,16 @@ public final class RestClientRetrofit implements RestClient {
     }
 
     @Override
-    public void postTestingResults(String projectId, PostTestingTestCaseRequest testcase, OnRestCallComplete<List<TestingResponse>> callback) {
+    public void postTestingResults(String testId, PostTestingTestCaseRequest testcase, OnRestCallComplete<List<TestingResponse>> callback) {
         PostTestingRequest request = new PostTestingRequest();
         List<PostTestingTestCaseRequest> testcases = Arrays.asList(testcase);
         request.setTestCases(testcases);
-        mRestApiService.postTestingResults(projectId, request, handleResponse(callback));
+        mRestApiService.postTestingResults(testId, request, handleResponse(callback));
+    }
+
+    @Override
+    public void generateTests(String projectId, OnRestCallComplete callback) {
+        mRestApiService.generateTests(projectId, handleResponse(callback));
     }
 
     /**

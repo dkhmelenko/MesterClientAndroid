@@ -57,6 +57,18 @@
             android:name=".activity.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
+
+        <!-- Project management -->
+        <activity
+            android:name=".activity.ProjectManagementActivity_"
+            android:label="@string/title_activity_project_management" >
+        </activity>
+
+        <!-- Testing results -->
+        <activity
+            android:name=".activity.TestingResultsActivity_"
+            android:label="@string/title_activity_testing_results" >
+        </activity>
     </application>
 
 </manifest>

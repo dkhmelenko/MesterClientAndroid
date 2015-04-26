@@ -78,9 +78,9 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ProjectResponse selected = mProjectsList.get(position);
-                TestcasesActivity_.intent(MainActivity.this)
-                        .extra(TestcasesActivity.EXTRA_PROJECT_NAME, selected.getName())
-                        .extra(TestcasesActivity.EXTRA_PROJECT_ID, selected.getId()).start();
+                ProjectManagementActivity_.intent(MainActivity.this)
+                        .extra(ProjectManagementActivity.EXTRA_PROJECT_NAME, selected.getName())
+                        .extra(ProjectManagementActivity.EXTRA_PROJECT_ID, selected.getId()).start();
             }
         });
     }
