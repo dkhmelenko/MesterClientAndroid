@@ -8,18 +8,19 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.khmelenko.lab.mester.R;
-import com.khmelenko.lab.mester.network.response.TestingResponse;
+import com.khmelenko.lab.mester.network.response.ProjectResponse;
+import com.khmelenko.lab.mester.network.response.TestingTestCaseResponse;
 
 import java.util.List;
 
 /**
- * Adapter for the list of testing results
+ * List adapter of the new testing list
  *
  * @author Dmytro Khmelenko
  */
-public class TestingResultsListAdapter extends ArrayAdapter<TestingResponse> {
+public class NewTestingListAdapter extends ArrayAdapter<TestingTestCaseResponse> {
 
-    private List<TestingResponse> mTests;
+    private List<TestingTestCaseResponse> mTests;
 
     /**
      * Constructor
@@ -27,8 +28,8 @@ public class TestingResultsListAdapter extends ArrayAdapter<TestingResponse> {
      * @param context Context
      * @param objects List of objects
      */
-    public TestingResultsListAdapter(Context context, List<TestingResponse> objects) {
-        super(context, R.layout.testing_results_item, objects);
+    public NewTestingListAdapter(Context context, List<TestingTestCaseResponse> objects) {
+        super(context, R.layout.new_testing_item, objects);
 
         mTests = objects;
     }
@@ -40,31 +41,26 @@ public class TestingResultsListAdapter extends ArrayAdapter<TestingResponse> {
 
         if (row == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            row = inflater.inflate(R.layout.testing_results_item, parent, false);
+            row = inflater.inflate(R.layout.new_testing_item, parent, false);
 
             holder = new ViewHolder();
-            holder.id = (TextView) row.findViewById(R.id.testingResultId);
-            holder.creationDate = (TextView) row.findViewById(R.id.testingResultCreationDate);
-            holder.status = (TextView) row.findViewById(R.id.testingResultStatus);
+            holder.name = (TextView) row.findViewById(R.id.newTestingTestName);
+            holder.status = (TextView) row.findViewById(R.id.newTestingTestStatus);
 
             row.setTag(holder);
         } else {
             holder = (ViewHolder) row.getTag();
         }
 
-        TestingResponse test = mTests.get(position);
-        String testId = getContext().getString(R.string.testing_results_test_id, test.getId());
-        holder.id.setText(testId);
-        holder.creationDate.setText(test.getCreationDate());
+        TestingTestCaseResponse test = mTests.get(position);
+        holder.name.setText(test.getName());
         holder.status.setText(test.getStatus());
 
         return row;
     }
 
     static class ViewHolder {
-        TextView id;
-        TextView creationDate;
+        TextView name;
         TextView status;
     }
-
 }

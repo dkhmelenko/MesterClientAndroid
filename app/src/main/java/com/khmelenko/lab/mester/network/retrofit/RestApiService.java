@@ -66,5 +66,5 @@ interface RestApiService {
                                    Callback<List<TestingResponse>> callback);
 
     @POST("/project/{id}/test")
-    public void generateTests(@Path("id") String projectId, Callback<Object> callback);
+    public void generateTests(@Path("id") String projectId, Callback<TestingResponse> callback);
 }

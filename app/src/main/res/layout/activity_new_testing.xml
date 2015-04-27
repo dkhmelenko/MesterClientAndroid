@@ -1,31 +1,24 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context="com.khmelenko.lab.mester.activity.TestingResultsActivity">
-
-    <Button
-        android:id="@+id/testingResultsNewTestingBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/testing_results_start_new_testing"/>
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.khmelenko.lab.mester.activity.NewTestingActivity">
 
     <ListView
-        android:id="@+id/testsListView"
+        android:id="@+id/newTestingListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"/>
+        android:layout_height="match_parent" />
 
     <TextView
         android:gravity="center"
-        android:id="@+id/testsEmptyView"
+        android:id="@+id/newTestingEmptyView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/testing_results_empty_list"
+        android:text="@string/new_testing_empty_list"
         android:visibility="gone" />
 
     <LinearLayout
-        android:id="@+id/testsProgressBar"
+        android:id="@+id/newTestingProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -34,7 +27,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@string/testing_results_loading"
+            android:text="@string/new_testing_loading"
             android:gravity="center"
             android:paddingRight="5dp"/>
 
@@ -46,3 +39,4 @@
     </LinearLayout>
 
 </FrameLayout>
+

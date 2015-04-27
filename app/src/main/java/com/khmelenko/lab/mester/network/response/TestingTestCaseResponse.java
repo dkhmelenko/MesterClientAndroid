@@ -1,5 +1,6 @@
 package com.khmelenko.lab.mester.network.response;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -23,6 +24,12 @@ public class TestingTestCaseResponse {
     @SerializedName("stepTests")
     private List<TestingStepResponse> mSteps;
 
+    @SerializedName("testCaseId")
+    private String mTestcaseId;
+
+    @Expose
+    private String mName;
+
     public String getId() {
         return mId;
     }
@@ -37,5 +44,17 @@ public class TestingTestCaseResponse {
 
     public List<TestingStepResponse> getSteps() {
         return mSteps;
+    }
+
+    public String getName() {
+        return mName;
+    }
+
+    public void setName(String name) {
+        mName = name;
+    }
+
+    public String getTestcaseId() {
+        return mTestcaseId;
     }
 }

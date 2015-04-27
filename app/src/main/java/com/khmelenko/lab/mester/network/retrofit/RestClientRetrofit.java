@@ -142,7 +142,7 @@ public final class RestClientRetrofit implements RestClient {
     }
 
     @Override
-    public void generateTests(String projectId, OnRestCallComplete callback) {
+    public void generateTests(String projectId, OnRestCallComplete<TestingResponse> callback) {
         mRestApiService.generateTests(projectId, handleResponse(callback));
     }
 

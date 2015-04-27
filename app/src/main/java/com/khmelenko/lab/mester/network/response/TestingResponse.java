@@ -30,7 +30,7 @@ public class TestingResponse {
     private String mProjectId;
 
     @SerializedName("caseTests")
-    private List<Object> mTestCases;
+    private List<TestingTestCaseResponse> mTestCases;
 
     public String getId() {
         return mId;
@@ -56,7 +56,7 @@ public class TestingResponse {
         return mProjectId;
     }
 
-    public List<Object> getTestCases() {
+    public List<TestingTestCaseResponse> getTestCases() {
         return mTestCases;
     }
 }

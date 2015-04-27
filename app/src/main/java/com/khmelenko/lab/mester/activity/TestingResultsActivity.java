@@ -71,6 +71,13 @@ public class TestingResultsActivity extends BaseActivity {
         });
     }
 
+    @Click(R.id.testingResultsNewTestingBtn)
+    protected void handleNewTesting() {
+        NewTestingActivity_.intent(TestingResultsActivity.this)
+                .extra(NewTestingActivity.EXTRA_PROJECT_NAME, mProjectName)
+                .extra(NewTestingActivity.EXTRA_PROJECT_ID, mProjectId).start();
+    }
+
     @OnResume
     protected void onResume() {
         super.onResume();

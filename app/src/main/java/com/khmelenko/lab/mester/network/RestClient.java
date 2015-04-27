@@ -120,5 +120,5 @@ public interface RestClient {
      * @param projectId Project ID
      * @param callback  Callback
      */
-    void generateTests(String projectId, OnRestCallComplete callback);
+    void generateTests(String projectId, OnRestCallComplete<TestingResponse> callback);
 }
