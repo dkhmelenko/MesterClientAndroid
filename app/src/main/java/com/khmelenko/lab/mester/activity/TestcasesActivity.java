@@ -64,8 +64,6 @@ public class TestcasesActivity extends BaseActivity {
 
     @AfterViews
     protected void init() {
-        mRestClient = new RestClientRetrofit();
-
         String projectName = getString(R.string.testcases_project_name, mProjectName);
         mTestcaseProjectName.setText(projectName);
 

@@ -42,6 +42,10 @@ public class TestingTestCaseResponse {
         return mCreationDate;
     }
 
+    public void setSteps(List<TestingStepResponse> steps) {
+        mSteps = steps;
+    }
+
     public List<TestingStepResponse> getSteps() {
         return mSteps;
     }

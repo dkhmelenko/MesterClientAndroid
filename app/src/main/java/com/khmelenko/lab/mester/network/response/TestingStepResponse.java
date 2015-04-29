@@ -24,12 +24,18 @@ public class TestingStepResponse {
     @SerializedName("caseTestId")
     private String mCaseTestId;
 
+    private String mDescription;
+
     public String getId() {
         return mId;
     }
 
     public String getStatus() {
         return mStatus;
+    }
+
+    public void setStatus(String status) {
+        mStatus = status;
     }
 
     public String getCreationDate() {
@@ -42,5 +48,13 @@ public class TestingStepResponse {
 
     public String getCaseTestId() {
         return mCaseTestId;
+    }
+
+    public String getDescription() {
+        return mDescription;
+    }
+
+    public void setDescription(String description) {
+        mDescription = description;
     }
 }

@@ -60,8 +60,6 @@ public class StepsActivity extends BaseActivity {
 
     @AfterViews
     protected void init() {
-        mRestClient = new RestClientRetrofit();
-
         String testcaseTitle = getString(R.string.steps_testcase_title, mTestcaseTitle);
         mStepsTestcaseTitle.setText(testcaseTitle);
 

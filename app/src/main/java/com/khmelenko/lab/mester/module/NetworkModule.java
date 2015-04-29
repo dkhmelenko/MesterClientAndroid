@@ -7,6 +7,7 @@ import com.khmelenko.lab.mester.activity.MainActivity_;
 import com.khmelenko.lab.mester.activity.NewTestingActivity_;
 import com.khmelenko.lab.mester.activity.ProjectManagementActivity_;
 import com.khmelenko.lab.mester.activity.StepsActivity_;
+import com.khmelenko.lab.mester.activity.TestActivity;
 import com.khmelenko.lab.mester.activity.TestcasesActivity_;
 import com.khmelenko.lab.mester.activity.TestingResultsActivity_;
 import com.khmelenko.lab.mester.network.RestClient;

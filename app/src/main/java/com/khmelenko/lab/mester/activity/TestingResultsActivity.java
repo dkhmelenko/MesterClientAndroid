@@ -54,8 +54,6 @@ public class TestingResultsActivity extends BaseActivity {
 
     @AfterViews
     protected void init() {
-        mRestClient = new RestClientRetrofit();
-
         mTestingResults = new ArrayList<>();
         mTestResultsListAdapter = new TestingResultsListAdapter(this, mTestingResults);
         // during loading do not show the empty view text
