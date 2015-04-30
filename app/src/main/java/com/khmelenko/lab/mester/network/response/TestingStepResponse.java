@@ -26,6 +26,8 @@ public class TestingStepResponse {
 
     private String mDescription;
 
+    private int mNumber;
+
     public String getId() {
         return mId;
     }
@@ -56,5 +58,13 @@ public class TestingStepResponse {
 
     public void setDescription(String description) {
         mDescription = description;
+    }
+
+    public int getNumber() {
+        return mNumber;
+    }
+
+    public void setNumber(int number) {
+        mNumber = number;
     }
 }

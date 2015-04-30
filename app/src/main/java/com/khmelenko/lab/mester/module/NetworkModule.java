@@ -8,6 +8,7 @@ import com.khmelenko.lab.mester.activity.NewTestingActivity_;
 import com.khmelenko.lab.mester.activity.ProjectManagementActivity_;
 import com.khmelenko.lab.mester.activity.StepsActivity_;
 import com.khmelenko.lab.mester.activity.TestActivity;
+import com.khmelenko.lab.mester.activity.TestActivity_;
 import com.khmelenko.lab.mester.activity.TestcasesActivity_;
 import com.khmelenko.lab.mester.activity.TestingResultsActivity_;
 import com.khmelenko.lab.mester.network.RestClient;
@@ -27,7 +28,7 @@ import dagger.Provides;
         injects = {MainActivity_.class, AddProjectActivity_.class, TestcasesActivity_.class,
                 AddTestcaseActivity_.class, StepsActivity_.class, AddStepActivity_.class,
                 ProjectManagementActivity_.class, TestingResultsActivity_.class,
-                NewTestingActivity_.class}
+                NewTestingActivity_.class, TestActivity_.class}
 )
 public class NetworkModule {
 

@@ -21,6 +21,10 @@ import java.util.List;
  */
 public class TestListAdapter extends ArrayAdapter<TestingStepResponse> {
 
+    private static final String STATUS_DEFAULT = "default";
+    private static final String STATUS_PASSED = "passed";
+    private static final String STATUS_FAILED = "failed";
+
     private List<TestingStepResponse> mSteps;
 
     /**
@@ -46,7 +50,6 @@ public class TestListAdapter extends ArrayAdapter<TestingStepResponse> {
 
             holder = new ViewHolder();
             holder.number = (TextView) row.findViewById(R.id.testStepNumber);
-            holder.description = (TextView) row.findViewById(R.id.testStepText);
             holder.status = (CheckBox) row.findViewById(R.id.testStepStatus);
 
             row.setTag(holder);
@@ -55,16 +58,22 @@ public class TestListAdapter extends ArrayAdapter<TestingStepResponse> {
         }
 
         final TestingStepResponse step = mSteps.get(position);
-        holder.number.setText(step.getDescription());
-        holder.description.setText(step.getCreationDate());
-        holder.status.setChecked(false);
+        holder.number.setText(String.valueOf(step.getNumber()));
+        holder.status.setText(step.getDescription());
+
+        if(step.getStatus().equals(STATUS_PASSED)) {
+            holder.status.setChecked(true);
+        } else {
+            holder.status.setChecked(false);
+        }
+
         holder.status.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    step.setStatus("passed");
+                    step.setStatus(STATUS_PASSED);
                 } else {
-                    step.setStatus("failed");
+                    step.setStatus(STATUS_FAILED);
                 }
             }
         });
@@ -74,7 +83,6 @@ public class TestListAdapter extends ArrayAdapter<TestingStepResponse> {
 
     static class ViewHolder {
         TextView number;
-        TextView description;
         CheckBox status;
     }
 }

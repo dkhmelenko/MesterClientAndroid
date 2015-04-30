@@ -15,13 +15,6 @@
         android:paddingRight="5dp"
         android:gravity="center"/>
 
-    <TextView
-        android:id="@+id/testStepText"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="20sp"
-        android:gravity="center_vertical"/>
-
     <CheckBox
         android:id="@+id/testStepStatus"
         android:layout_width="match_parent"

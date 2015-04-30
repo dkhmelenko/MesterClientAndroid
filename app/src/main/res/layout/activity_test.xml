@@ -1,56 +1,21 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                tools:context="com.khmelenko.lab.mester.activity.TestActivity">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.khmelenko.lab.mester.activity.TestActivity">
 
-    <FrameLayout
+    <ListView
+        android:id="@+id/testListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:gravity="center"
+        android:id="@+id/testEmptyView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:text="@string/test_empty_list"
+        android:visibility="gone"/>
 
-        <ListView
-            android:id="@+id/testListView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+</FrameLayout>
 
-        <TextView
-            android:gravity="center"
-            android:id="@+id/testEmptyView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/test_empty_list"
-            android:visibility="gone" />
-
-        <LinearLayout
-            android:id="@+id/testProgressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/test_loading"
-                android:gravity="center"
-                android:paddingRight="5dp" />
-
-            <ProgressBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:indeterminate="false" />
-
-        </LinearLayout>
-
-    </FrameLayout>
-
-    <Button
-        android:id="@+id/testDoneBtn"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_weight="1"
-        android:text="@string/test_done_btn"/>
-
-</LinearLayout>

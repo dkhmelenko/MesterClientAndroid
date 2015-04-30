@@ -16,8 +16,11 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
+import org.parceler.transfuse.annotations.OnBackPressed;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @EActivity(R.layout.activity_test)
@@ -42,9 +45,6 @@ public class TestActivity extends BaseActivity {
     @ViewById(R.id.testEmptyView)
     TextView mTestEmptyView;
 
-    @ViewById(R.id.testProgressBar)
-    View mProgressBar;
-
     private TestListAdapter mTestListAdapter;
     private TestingTestCaseResponse mTest;
 
@@ -53,15 +53,26 @@ public class TestActivity extends BaseActivity {
         Gson gson = new Gson();
         mTest = gson.fromJson(mTestObj, TestingTestCaseResponse.class);
 
-        mTestListAdapter = new TestListAdapter(this, mTest.getSteps());
-        // during loading do not show the empty view text
-        mTestEmptyView.setText("");
+        List<TestingStepResponse> steps = mTest.getSteps();
+        if(steps == null) {
+            steps = new ArrayList<>();
+        }
+
+        // sort by step number
+        Collections.sort(steps, new Comparator<TestingStepResponse>() {
+            @Override
+            public int compare(TestingStepResponse lhs, TestingStepResponse rhs) {
+                return lhs.getNumber() < rhs.getNumber() ? -1 : 1;
+            }
+        });
+
+        mTestListAdapter = new TestListAdapter(this, steps);
         mTestListView.setEmptyView(mTestEmptyView);
         mTestListView.setAdapter(mTestListAdapter);
     }
 
-    @Click(R.id.testDoneBtn)
-    protected void handleTestDone() {
+    @Override
+    public void onBackPressed() {
         Gson gson = new Gson();
         String serializedData = gson.toJson(mTest);
 

@@ -18,6 +18,7 @@ import com.khmelenko.lab.mester.network.response.TestingStepResponse;
 import com.khmelenko.lab.mester.network.response.TestingTestCaseResponse;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.OnActivityResult;
@@ -85,17 +86,25 @@ public class NewTestingActivity extends BaseActivity {
 
     @OnActivityResult(TEST_REQUEST_CODE)
     void onResult(Intent data) {
-        String testObj = data.getStringExtra(TestActivity.EXTRA_TEST_OBJ);
-        Gson gson = new Gson();
-        TestingTestCaseResponse completedTest = gson.fromJson(testObj, TestingTestCaseResponse.class);
+        if(data != null) {
+            String testObj = data.getStringExtra(TestActivity.EXTRA_TEST_OBJ);
+            Gson gson = new Gson();
+            TestingTestCaseResponse completedTest = gson.fromJson(testObj, TestingTestCaseResponse.class);
 
-        for (int i = 0; i < mTests.size(); i++) {
-            TestingTestCaseResponse test = mTests.get(i);
-            if (test.getId().equals(completedTest.getId())) {
-                test.setSteps(completedTest.getSteps());
-                break;
+            for (int i = 0; i < mTests.size(); i++) {
+                TestingTestCaseResponse test = mTests.get(i);
+                if (test.getId().equals(completedTest.getId())) {
+                    test.setSteps(completedTest.getSteps());
+                    break;
+                }
             }
         }
+    }
+
+    @Click(R.id.newTestingDoneBtn)
+    void postTestingResults()
+    {
+        // TODO
     }
 
     /**
@@ -106,7 +115,35 @@ public class NewTestingActivity extends BaseActivity {
         mRestClient.generateTests(mProjectId, new OnRestCallComplete<TestingResponse>() {
             @Override
             public void onSuccess(TestingResponse responseBody) {
-                handleTestLoaded(responseBody);
+                loadTestDetails(responseBody.getId());
+            }
+
+            @Override
+            public void onFail(int errorCode, String message) {
+                mProgressBar.setVisibility(View.GONE);
+                mTestEmptyView.setText(R.string.new_testing_empty_list);
+
+                Toast.makeText(NewTestingActivity.this, message, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void loadTestDetails(final String testId) {
+        mRestClient.getTestingResults(mProjectId, new OnRestCallComplete<List<TestingResponse>>() {
+            @Override
+            public void onSuccess(List<TestingResponse> responseBody) {
+
+                TestingResponse foundTest = null;
+                for(TestingResponse test : responseBody) {
+                    if(test.getId().equals(testId)) {
+                        foundTest = test;
+                        break;
+                    }
+                }
+
+                if(foundTest != null) {
+                    handleTestLoaded(foundTest);
+                }
             }
 
             @Override
@@ -174,10 +211,13 @@ public class NewTestingActivity extends BaseActivity {
      * @param steps    List of steps
      */
     private void assignTestStepsToTest(TestingTestCaseResponse testcase, List<StepResponse> steps) {
-        for (TestingStepResponse testingStep : testcase.getSteps()) {
-            StepResponse step = findStepById(testingStep.getId(), steps);
-            if (step != null) {
-                testingStep.setDescription(step.getText());
+        if(testcase.getSteps() != null) {
+            for (TestingStepResponse testingStep : testcase.getSteps()) {
+                StepResponse step = findStepById(testingStep.getTestStepId(), steps);
+                if (step != null) {
+                    testingStep.setDescription(step.getText());
+                    testingStep.setNumber(step.getNumber());
+                }
             }
         }
     }
