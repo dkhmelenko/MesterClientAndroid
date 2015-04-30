@@ -1,6 +1,6 @@
 package com.khmelenko.lab.mester.network;
 
-import com.khmelenko.lab.mester.network.request.PostTestingTestCaseRequest;
+import com.khmelenko.lab.mester.network.request.PostTestingRequest;
 import com.khmelenko.lab.mester.network.response.ProjectResponse;
 import com.khmelenko.lab.mester.network.response.StepResponse;
 import com.khmelenko.lab.mester.network.response.TestCaseResponse;
@@ -111,7 +111,7 @@ public interface RestClient {
      * @param testcase Testcase results
      * @param callback Callback
      */
-    void postTestingResults(String testId, PostTestingTestCaseRequest testcase,
+    void postTestingResults(String testId, PostTestingRequest request,
                             OnRestCallComplete<List<TestingResponse>> callback);
 
     /**

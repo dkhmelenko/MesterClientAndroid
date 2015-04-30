@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.khmelenko.lab.mester.R;
 import com.khmelenko.lab.mester.adapter.TestListAdapter;
+import com.khmelenko.lab.mester.model.TestStatus;
 import com.khmelenko.lab.mester.network.response.TestingStepResponse;
 import com.khmelenko.lab.mester.network.response.TestingTestCaseResponse;
 
@@ -56,6 +57,13 @@ public class TestActivity extends BaseActivity {
         List<TestingStepResponse> steps = mTest.getSteps();
         if(steps == null) {
             steps = new ArrayList<>();
+        }
+
+        // mark all default statuses as failed
+        for(TestingStepResponse step : steps) {
+            if(step.getStatus().equals(TestStatus.DEFAULT.getName())) {
+                step.setStatus(TestStatus.FAILED.getName());
+            }
         }
 
         // sort by step number

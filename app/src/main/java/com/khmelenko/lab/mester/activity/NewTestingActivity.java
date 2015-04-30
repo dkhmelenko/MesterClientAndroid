@@ -11,6 +11,9 @@ import com.google.gson.Gson;
 import com.khmelenko.lab.mester.R;
 import com.khmelenko.lab.mester.adapter.NewTestingListAdapter;
 import com.khmelenko.lab.mester.network.OnRestCallComplete;
+import com.khmelenko.lab.mester.network.request.PostTestingRequest;
+import com.khmelenko.lab.mester.network.request.PostTestingStepRequest;
+import com.khmelenko.lab.mester.network.request.PostTestingTestCaseRequest;
 import com.khmelenko.lab.mester.network.response.StepResponse;
 import com.khmelenko.lab.mester.network.response.TestCaseResponse;
 import com.khmelenko.lab.mester.network.response.TestingResponse;
@@ -57,6 +60,7 @@ public class NewTestingActivity extends BaseActivity {
 
     private NewTestingListAdapter mTestsListAdapter;
     private List<TestingTestCaseResponse> mTests;
+    private String mActiveTestId;
 
     @AfterViews
     protected void init() {
@@ -86,7 +90,7 @@ public class NewTestingActivity extends BaseActivity {
 
     @OnActivityResult(TEST_REQUEST_CODE)
     void onResult(Intent data) {
-        if(data != null) {
+        if (data != null) {
             String testObj = data.getStringExtra(TestActivity.EXTRA_TEST_OBJ);
             Gson gson = new Gson();
             TestingTestCaseResponse completedTest = gson.fromJson(testObj, TestingTestCaseResponse.class);
@@ -102,20 +106,17 @@ public class NewTestingActivity extends BaseActivity {
     }
 
     @Click(R.id.newTestingDoneBtn)
-    void postTestingResults()
-    {
-        // TODO
-    }
+    void postTestingResults() {
 
-    /**
-     * Loads testing data
-     */
-    protected void loadData() {
+        PostTestingRequest testingRequest = generateTestingResults();
 
-        mRestClient.generateTests(mProjectId, new OnRestCallComplete<TestingResponse>() {
+        mProgressBar.setVisibility(View.VISIBLE);
+        mRestClient.postTestingResults(mActiveTestId, testingRequest, new OnRestCallComplete<List<TestingResponse>>() {
             @Override
-            public void onSuccess(TestingResponse responseBody) {
-                loadTestDetails(responseBody.getId());
+            public void onSuccess(List<TestingResponse> responseBody) {
+
+                // testing completed, results successfully posted to the server
+                finish();
             }
 
             @Override
@@ -128,20 +129,77 @@ public class NewTestingActivity extends BaseActivity {
         });
     }
 
+    /**
+     * Generates request with testing results
+     *
+     * @return Request with testing results
+     */
+    private PostTestingRequest generateTestingResults() {
+        List<PostTestingTestCaseRequest> tests = new ArrayList<>();
+        for (TestingTestCaseResponse test : mTests) {
+            PostTestingTestCaseRequest testRequest = new PostTestingTestCaseRequest();
+            testRequest.setId(test.getId());
+
+            List<PostTestingStepRequest> steps = new ArrayList<>();
+            for (TestingStepResponse step : test.getSteps()) {
+                PostTestingStepRequest stepRequest = new PostTestingStepRequest();
+                stepRequest.setId(step.getId());
+                stepRequest.setStatus(step.getStatus());
+
+                steps.add(stepRequest);
+            }
+            testRequest.setSteps(steps);
+
+            tests.add(testRequest);
+        }
+
+        PostTestingRequest testingRequest = new PostTestingRequest();
+        testingRequest.setTestCases(tests);
+
+        return testingRequest;
+    }
+
+    /**
+     * Loads testing data
+     */
+    protected void loadData() {
+
+        mRestClient.generateTests(mProjectId, new OnRestCallComplete<TestingResponse>() {
+            @Override
+            public void onSuccess(TestingResponse responseBody) {
+                mActiveTestId = responseBody.getId();
+                loadTestDetails(mActiveTestId);
+            }
+
+            @Override
+            public void onFail(int errorCode, String message) {
+                mProgressBar.setVisibility(View.GONE);
+                mTestEmptyView.setText(R.string.new_testing_empty_list);
+
+                Toast.makeText(NewTestingActivity.this, message, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    /**
+     * Loads test details for the test
+     *
+     * @param testId Test ID
+     */
     private void loadTestDetails(final String testId) {
         mRestClient.getTestingResults(mProjectId, new OnRestCallComplete<List<TestingResponse>>() {
             @Override
             public void onSuccess(List<TestingResponse> responseBody) {
 
                 TestingResponse foundTest = null;
-                for(TestingResponse test : responseBody) {
-                    if(test.getId().equals(testId)) {
+                for (TestingResponse test : responseBody) {
+                    if (test.getId().equals(testId)) {
                         foundTest = test;
                         break;
                     }
                 }
 
-                if(foundTest != null) {
+                if (foundTest != null) {
                     handleTestLoaded(foundTest);
                 }
             }
@@ -211,7 +269,7 @@ public class NewTestingActivity extends BaseActivity {
      * @param steps    List of steps
      */
     private void assignTestStepsToTest(TestingTestCaseResponse testcase, List<StepResponse> steps) {
-        if(testcase.getSteps() != null) {
+        if (testcase.getSteps() != null) {
             for (TestingStepResponse testingStep : testcase.getSteps()) {
                 StepResponse step = findStepById(testingStep.getTestStepId(), steps);
                 if (step != null) {

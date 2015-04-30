@@ -10,6 +10,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.khmelenko.lab.mester.R;
+import com.khmelenko.lab.mester.model.TestStatus;
 import com.khmelenko.lab.mester.network.response.TestingStepResponse;
 
 import java.util.List;
@@ -20,10 +21,6 @@ import java.util.List;
  * @author Dmytro Khmelenko
  */
 public class TestListAdapter extends ArrayAdapter<TestingStepResponse> {
-
-    private static final String STATUS_DEFAULT = "default";
-    private static final String STATUS_PASSED = "passed";
-    private static final String STATUS_FAILED = "failed";
 
     private List<TestingStepResponse> mSteps;
 
@@ -61,19 +58,15 @@ public class TestListAdapter extends ArrayAdapter<TestingStepResponse> {
         holder.number.setText(String.valueOf(step.getNumber()));
         holder.status.setText(step.getDescription());
 
-        if(step.getStatus().equals(STATUS_PASSED)) {
-            holder.status.setChecked(true);
-        } else {
-            holder.status.setChecked(false);
-        }
-
+        boolean statusPassed = step.getStatus().equals(TestStatus.PASSED.getName());
+        holder.status.setChecked(statusPassed);
         holder.status.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    step.setStatus(STATUS_PASSED);
+                    step.setStatus(TestStatus.PASSED.getName());
                 } else {
-                    step.setStatus(STATUS_FAILED);
+                    step.setStatus(TestStatus.FAILED.getName());
                 }
             }
         });
