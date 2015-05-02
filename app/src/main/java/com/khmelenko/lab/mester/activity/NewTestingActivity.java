@@ -111,9 +111,9 @@ public class NewTestingActivity extends BaseActivity {
         PostTestingRequest testingRequest = generateTestingResults();
 
         mProgressBar.setVisibility(View.VISIBLE);
-        mRestClient.postTestingResults(mActiveTestId, testingRequest, new OnRestCallComplete<List<TestingResponse>>() {
+        mRestClient.postTestingResults(mActiveTestId, testingRequest, new OnRestCallComplete<TestingResponse>() {
             @Override
-            public void onSuccess(List<TestingResponse> responseBody) {
+            public void onSuccess(TestingResponse responseBody) {
 
                 // testing completed, results successfully posted to the server
                 finish();

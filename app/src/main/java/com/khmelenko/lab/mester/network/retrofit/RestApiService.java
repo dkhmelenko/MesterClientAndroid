@@ -16,6 +16,7 @@ import retrofit.http.Body;
 import retrofit.http.DELETE;
 import retrofit.http.GET;
 import retrofit.http.POST;
+import retrofit.http.PUT;
 import retrofit.http.Path;
 
 /**
@@ -61,9 +62,9 @@ interface RestApiService {
     @GET("/project/{id}/tests")
     public void getTestingResults(@Path("id") String projectId, Callback<List<TestingResponse>> callback);
 
-    @POST("/test/{id}/submit")
+    @PUT("/test/{id}/submit")
     public void postTestingResults(@Path("id") String testId, @Body PostTestingRequest request,
-                                   Callback<List<TestingResponse>> callback);
+                                   Callback<TestingResponse> callback);
 
     @POST("/project/{id}/test")
     public void generateTests(@Path("id") String projectId, Callback<TestingResponse> callback);

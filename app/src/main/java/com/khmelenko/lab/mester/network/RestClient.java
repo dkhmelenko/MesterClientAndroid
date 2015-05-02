@@ -108,11 +108,11 @@ public interface RestClient {
      * Posts testing testcase results
      *
      * @param testId   Test ID
-     * @param testcase Testcase results
+     * @param request Request with testing results
      * @param callback Callback
      */
     void postTestingResults(String testId, PostTestingRequest request,
-                            OnRestCallComplete<List<TestingResponse>> callback);
+                            OnRestCallComplete<TestingResponse> callback);
 
     /**
      * Generates tests for the project
