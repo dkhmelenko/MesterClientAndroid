@@ -1,0 +1,41 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.khmelenko.lab.mester.activity.testing.TestingDetailsActivity">
+
+    <ListView
+        android:id="@+id/testingDetailsListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:gravity="center"
+        android:id="@+id/testingDetailsEmptyView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/testing_details_empty_list"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/testingDetailsProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/testing_details_loading"
+            android:gravity="center"
+            android:paddingRight="5dp"/>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"/>
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -81,6 +81,12 @@
             android:name=".activity.testing.TestActivity_"
             android:label="@string/title_activity_test" >
         </activity>
+
+        <!-- Testing details activity -->
+        <activity
+            android:name=".activity.testing.TestingDetailsActivity_"
+            android:label="@string/title_activity_testing_details" >
+        </activity>
     </application>
 
 </manifest>

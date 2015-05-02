@@ -60,14 +60,18 @@
     <string name="new_testing_empty_list">No testcases for testing</string>
     <string name="new_testing_loading">Loading...</string>
     <string name="testing_results_test_id">Test %1$s</string>
-    <string name="title_activity_test">TestActivity</string>
-
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="test_done_btn">Done</string>
-    <string name="test_loading">Loading</string>
-    <string name="test_empty_list">No test steps</string>
     <string name="new_testing_confirm_quit_testing">Are you sure to quit testing? It will be impossible to continue it</string>
     <string name="new_testing_quit_testing_title">Quit testing</string>
+
+    <!-- Test (during testing) -->
+    <string name="title_activity_test">Test</string>
+    <string name="test_done_btn">Done</string>
+    <string name="test_loading">Loading...</string>
+    <string name="test_empty_list">No test steps</string>
+
+    <!-- Testing details -->
+    <string name="title_activity_testing_details">Testing details</string>
+    <string name="testing_details_empty_list">No testing details</string>
+    <string name="testing_details_loading">Loading...</string>
 
 </resources>

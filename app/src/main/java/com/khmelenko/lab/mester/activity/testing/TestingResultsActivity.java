@@ -7,6 +7,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.khmelenko.lab.mester.R;
 import com.khmelenko.lab.mester.activity.BaseActivity;
 import com.khmelenko.lab.mester.adapter.TestingResultsListAdapter;
@@ -59,11 +60,16 @@ public class TestingResultsActivity extends BaseActivity {
         mTestEmptyView.setText("");
         mTestsListView.setEmptyView(mTestEmptyView);
         mTestsListView.setAdapter(mTestResultsListAdapter);
-
         mTestsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // TODO Show testing details
+                TestingResponse selected = mTestingResults.get(position);
+                Gson gson = new Gson();
+                String serializedData = gson.toJson(selected);
+
+                TestingDetailsActivity_.intent(TestingResultsActivity.this)
+                        .extra(TestingDetailsActivity.EXTRA_TESTING_DETAILS_OBJ, serializedData)
+                        .start();
             }
         });
     }
