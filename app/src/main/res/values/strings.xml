@@ -67,5 +67,7 @@
     <string name="test_done_btn">Done</string>
     <string name="test_loading">Loading</string>
     <string name="test_empty_list">No test steps</string>
+    <string name="new_testing_confirm_quit_testing">Are you sure to quit testing? It will be impossible to continue it</string>
+    <string name="new_testing_quit_testing_title">Quit testing</string>
 
 </resources>

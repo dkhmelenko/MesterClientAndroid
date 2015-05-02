@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.khmelenko.lab.mester.R;
+import com.khmelenko.lab.mester.model.TestStatus;
 import com.khmelenko.lab.mester.network.response.TestingResponse;
 
 import java.util.List;
@@ -57,8 +58,28 @@ public class TestingResultsListAdapter extends ArrayAdapter<TestingResponse> {
         holder.id.setText(testId);
         holder.creationDate.setText(test.getCreationDate());
         holder.status.setText(test.getStatus());
+        int colorId = getStatusColor(test.getStatus());
+        holder.status.setTextColor(colorId);
 
         return row;
+    }
+
+    /**
+     * Gets color for the status
+     *
+     * @param status Status
+     * @return Color ID
+     */
+    private int getStatusColor(String status) {
+        int colorId = 0;
+        if (status.equals(TestStatus.DEFAULT.getName())) {
+            colorId = getContext().getResources().getColor(R.color.status_default);
+        } else if (status.equals(TestStatus.PASSED.getName())) {
+            colorId = getContext().getResources().getColor(R.color.status_passed);
+        } else if (status.equals(TestStatus.FAILED.getName())) {
+            colorId = getContext().getResources().getColor(R.color.status_failed);
+        }
+        return colorId;
     }
 
     static class ViewHolder {

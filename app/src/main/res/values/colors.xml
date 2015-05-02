@@ -5,4 +5,8 @@
     <color name="ripple">#F06292</color>
     <color name="accent">#E91E63</color>
     <color name="accent_pressed">#C2185B</color>
+    
+    <color name="status_default">#FFC0C0C0</color>
+    <color name="status_passed">#FF00BB00</color>
+    <color name="status_failed">#FFEE0000</color>
 </resources>

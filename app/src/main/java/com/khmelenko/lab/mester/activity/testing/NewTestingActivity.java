@@ -1,5 +1,7 @@
 package com.khmelenko.lab.mester.activity.testing;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -87,6 +89,28 @@ public class NewTestingActivity extends BaseActivity {
         });
 
         loadData();
+    }
+
+    @Override
+    public void onBackPressed() {
+        String message = getString(R.string.new_testing_confirm_quit_testing);
+
+        AlertDialog alert = new AlertDialog.Builder(this)
+                .setTitle(R.string.new_testing_quit_testing_title)
+                .setMessage(message)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .show();
     }
 
     @OnActivityResult(TEST_REQUEST_CODE)

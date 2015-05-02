@@ -45,7 +45,6 @@ public class NewTestingListAdapter extends ArrayAdapter<TestingTestCaseResponse>
 
             holder = new ViewHolder();
             holder.name = (TextView) row.findViewById(R.id.newTestingTestName);
-            holder.status = (TextView) row.findViewById(R.id.newTestingTestStatus);
 
             row.setTag(holder);
         } else {
@@ -54,13 +53,11 @@ public class NewTestingListAdapter extends ArrayAdapter<TestingTestCaseResponse>
 
         TestingTestCaseResponse test = mTests.get(position);
         holder.name.setText(test.getName());
-        holder.status.setText(test.getStatus());
 
         return row;
     }
 
     static class ViewHolder {
         TextView name;
-        TextView status;
     }
 }
