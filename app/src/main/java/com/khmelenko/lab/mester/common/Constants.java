@@ -16,6 +16,6 @@ public final class Constants {
     /**
      * Service URL
      */
-    public static final String DEFAULT_REST_SERVICE = "http://ec2-54-186-231-32.us-west-2.compute.amazonaws.com:8080";
+    public static final String DEFAULT_REST_SERVICE = "TODO Add your service URL here";
 
 }
