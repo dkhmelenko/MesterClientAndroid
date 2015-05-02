@@ -1,6 +1,9 @@
-package com.khmelenko.lab.mester.activity;
+package com.khmelenko.lab.mester.activity.management;
 
 import com.khmelenko.lab.mester.R;
+import com.khmelenko.lab.mester.activity.BaseActivity;
+import com.khmelenko.lab.mester.activity.testing.TestingResultsActivity;
+import com.khmelenko.lab.mester.activity.testing.TestingResultsActivity_;
 
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;

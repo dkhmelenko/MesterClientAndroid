@@ -1,6 +1,5 @@
-package com.khmelenko.lab.mester.activity;
+package com.khmelenko.lab.mester.activity.management;
 
-import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -10,9 +9,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.khmelenko.lab.mester.R;
+import com.khmelenko.lab.mester.activity.BaseActivity;
 import com.khmelenko.lab.mester.network.OnRestCallComplete;
-import com.khmelenko.lab.mester.network.RestClient;
-import com.khmelenko.lab.mester.network.retrofit.RestClientRetrofit;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;

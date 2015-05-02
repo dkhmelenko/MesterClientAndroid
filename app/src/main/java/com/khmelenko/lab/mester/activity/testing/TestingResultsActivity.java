@@ -1,4 +1,4 @@
-package com.khmelenko.lab.mester.activity;
+package com.khmelenko.lab.mester.activity.testing;
 
 
 import android.view.View;
@@ -8,10 +8,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.khmelenko.lab.mester.R;
+import com.khmelenko.lab.mester.activity.BaseActivity;
 import com.khmelenko.lab.mester.adapter.TestingResultsListAdapter;
 import com.khmelenko.lab.mester.network.OnRestCallComplete;
 import com.khmelenko.lab.mester.network.response.TestingResponse;
-import com.khmelenko.lab.mester.network.retrofit.RestClientRetrofit;
 import com.khmelenko.lab.mester.utils.StringUtils;
 
 import org.androidannotations.annotations.AfterViews;
@@ -22,7 +22,6 @@ import org.androidannotations.annotations.ViewById;
 import org.parceler.transfuse.annotations.OnResume;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;

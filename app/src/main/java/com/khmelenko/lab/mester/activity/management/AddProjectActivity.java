@@ -1,6 +1,5 @@
-package com.khmelenko.lab.mester.activity;
+package com.khmelenko.lab.mester.activity.management;
 
-import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -10,43 +9,36 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.khmelenko.lab.mester.R;
+import com.khmelenko.lab.mester.activity.BaseActivity;
 import com.khmelenko.lab.mester.network.OnRestCallComplete;
-import com.khmelenko.lab.mester.network.RestClient;
-import com.khmelenko.lab.mester.network.retrofit.RestClientRetrofit;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 
-@EActivity(R.layout.activity_add_testcase)
-public class AddTestcaseActivity extends BaseActivity {
+@EActivity(R.layout.activity_add_project)
+public class AddProjectActivity extends BaseActivity {
 
-    public static final String EXTRA_PROJECT_ID = "ProjectId";
+    @ViewById(R.id.addProjectName)
+    EditText mProjectName;
 
-    @Extra(EXTRA_PROJECT_ID)
-    String mProjectId;
+    @ViewById(R.id.addProjectDoneBtn)
+    Button mAddProjectButton;
 
-    @ViewById(R.id.addTestcaseTitle)
-    EditText mTestcaseTitle;
-
-    @ViewById(R.id.addTestcaseDoneBtn)
-    Button mAddTestcaseBtn;
-
-    @ViewById(R.id.addTestcaseProgressBar)
+    @ViewById(R.id.addProjectProgressBar)
     ProgressBar mProgressBar;
 
     @AfterViews
     protected void init() {
-        mTestcaseTitle.addTextChangedListener(new TextWatcher() {
+        mProjectName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mAddTestcaseBtn.setEnabled(s.length() > 0);
+                mAddProjectButton.setEnabled(s.length() > 0);
             }
 
             @Override
@@ -55,19 +47,19 @@ public class AddTestcaseActivity extends BaseActivity {
         });
     }
 
-    @Click(R.id.addTestcaseDoneBtn)
-    void handleAddTestcaseDone() {
-        mAddTestcaseBtn.setEnabled(false);
+    @Click(R.id.addProjectDoneBtn)
+    void handleAddProjectDone() {
+        mAddProjectButton.setEnabled(false);
         mProgressBar.setVisibility(View.VISIBLE);
 
-        String testcaseTitle = mTestcaseTitle.getText().toString();
+        String projectName = mProjectName.getText().toString();
 
-        mRestClient.addTestcase(mProjectId, testcaseTitle, new OnRestCallComplete() {
+        mRestClient.addProject(projectName, new OnRestCallComplete() {
             @Override
             public void onSuccess(Object obj) {
 
                 mProgressBar.setVisibility(View.GONE);
-                mAddTestcaseBtn.setEnabled(true);
+                mAddProjectButton.setEnabled(true);
 
                 finish();
             }
@@ -75,10 +67,11 @@ public class AddTestcaseActivity extends BaseActivity {
             @Override
             public void onFail(int errorCode, String message) {
                 mProgressBar.setVisibility(View.GONE);
-                mAddTestcaseBtn.setEnabled(true);
+                mAddProjectButton.setEnabled(true);
 
-                Toast.makeText(AddTestcaseActivity.this, message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddProjectActivity.this, message, Toast.LENGTH_SHORT).show();
             }
         });
     }
+
 }

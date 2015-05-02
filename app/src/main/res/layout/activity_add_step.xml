@@ -2,7 +2,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="com.khmelenko.lab.mester.activity.AddStepActivity">
+             tools:context="com.khmelenko.lab.mester.activity.management.AddStepActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

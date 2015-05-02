@@ -24,31 +24,31 @@
 
         <!-- Add Project screen -->
         <activity
-            android:name=".activity.AddProjectActivity_"
+            android:name=".activity.management.AddProjectActivity_"
             android:label="@string/add_project_title" >
         </activity>
 
         <!-- TestCases screen -->
         <activity
-            android:name=".activity.TestcasesActivity_"
+            android:name=".activity.management.TestcasesActivity_"
             android:label="@string/title_activity_testcases" >
         </activity>
 
         <!-- Add testcase screen -->
         <activity
-            android:name=".activity.AddTestcaseActivity_"
+            android:name=".activity.management.AddTestcaseActivity_"
             android:label="@string/title_activity_add_testcase" >
         </activity>
 
         <!-- Steps screen -->
         <activity
-            android:name=".activity.StepsActivity_"
+            android:name=".activity.management.StepsActivity_"
             android:label="@string/title_activity_steps" >
         </activity>
 
         <!-- Add step screen -->
         <activity
-            android:name=".activity.AddStepActivity_"
+            android:name=".activity.management.AddStepActivity_"
             android:label="@string/title_activity_add_step" >
         </activity>
 
@@ -60,25 +60,25 @@
 
         <!-- Project management -->
         <activity
-            android:name=".activity.ProjectManagementActivity_"
+            android:name=".activity.management.ProjectManagementActivity_"
             android:label="@string/title_activity_project_management" >
         </activity>
 
         <!-- Testing results -->
         <activity
-            android:name=".activity.TestingResultsActivity_"
+            android:name=".activity.testing.TestingResultsActivity_"
             android:label="@string/title_activity_testing_results" >
         </activity>
 
         <!-- New testing -->
         <activity
-            android:name=".activity.NewTestingActivity_"
+            android:name=".activity.testing.NewTestingActivity_"
             android:label="@string/title_activity_new_testing" >
         </activity>
 
         <!-- Testing test -->
         <activity
-            android:name=".activity.TestActivity_"
+            android:name=".activity.testing.TestActivity_"
             android:label="@string/title_activity_test" >
         </activity>
     </application>

@@ -1,4 +1,4 @@
-package com.khmelenko.lab.mester.activity;
+package com.khmelenko.lab.mester.activity.testing;
 
 import android.content.Intent;
 import android.view.View;
@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.khmelenko.lab.mester.R;
+import com.khmelenko.lab.mester.activity.BaseActivity;
 import com.khmelenko.lab.mester.adapter.TestListAdapter;
 import com.khmelenko.lab.mester.model.TestStatus;
 import com.khmelenko.lab.mester.network.response.TestingStepResponse;

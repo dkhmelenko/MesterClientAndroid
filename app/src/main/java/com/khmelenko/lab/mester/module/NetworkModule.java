@@ -1,16 +1,15 @@
 package com.khmelenko.lab.mester.module;
 
-import com.khmelenko.lab.mester.activity.AddProjectActivity_;
-import com.khmelenko.lab.mester.activity.AddStepActivity_;
-import com.khmelenko.lab.mester.activity.AddTestcaseActivity_;
+import com.khmelenko.lab.mester.activity.management.AddProjectActivity_;
+import com.khmelenko.lab.mester.activity.management.AddStepActivity_;
+import com.khmelenko.lab.mester.activity.management.AddTestcaseActivity_;
 import com.khmelenko.lab.mester.activity.MainActivity_;
-import com.khmelenko.lab.mester.activity.NewTestingActivity_;
-import com.khmelenko.lab.mester.activity.ProjectManagementActivity_;
-import com.khmelenko.lab.mester.activity.StepsActivity_;
-import com.khmelenko.lab.mester.activity.TestActivity;
-import com.khmelenko.lab.mester.activity.TestActivity_;
-import com.khmelenko.lab.mester.activity.TestcasesActivity_;
-import com.khmelenko.lab.mester.activity.TestingResultsActivity_;
+import com.khmelenko.lab.mester.activity.testing.NewTestingActivity_;
+import com.khmelenko.lab.mester.activity.management.ProjectManagementActivity_;
+import com.khmelenko.lab.mester.activity.management.StepsActivity_;
+import com.khmelenko.lab.mester.activity.testing.TestActivity_;
+import com.khmelenko.lab.mester.activity.management.TestcasesActivity_;
+import com.khmelenko.lab.mester.activity.testing.TestingResultsActivity_;
 import com.khmelenko.lab.mester.network.RestClient;
 import com.khmelenko.lab.mester.network.retrofit.RestClientRetrofit;
 

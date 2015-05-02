@@ -15,7 +15,7 @@ import javax.inject.Inject;
 public abstract class BaseActivity extends ActionBarActivity {
 
     @Inject
-    RestClient mRestClient;
+    public RestClient mRestClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

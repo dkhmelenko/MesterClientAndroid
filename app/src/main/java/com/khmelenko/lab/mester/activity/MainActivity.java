@@ -12,6 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.khmelenko.lab.mester.R;
+import com.khmelenko.lab.mester.activity.management.AddProjectActivity_;
+import com.khmelenko.lab.mester.activity.management.ProjectManagementActivity;
+import com.khmelenko.lab.mester.activity.management.ProjectManagementActivity_;
 import com.khmelenko.lab.mester.adapter.ProjectsListAdapter;
 import com.khmelenko.lab.mester.common.Constants;
 import com.khmelenko.lab.mester.network.OnRestCallComplete;
