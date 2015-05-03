@@ -10,6 +10,7 @@ import javax.inject.Inject;
 
 /**
  * Base activity class
+ *
  * @author Dmytro Khmelenko
  */
 public abstract class BaseActivity extends ActionBarActivity {
@@ -20,6 +21,6 @@ public abstract class BaseActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((MesterApplication)getApplication()).inject(this);
+        ((MesterApplication) getApplication()).inject(this);
     }
 }

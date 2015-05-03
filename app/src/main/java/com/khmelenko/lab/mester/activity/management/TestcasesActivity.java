@@ -77,7 +77,7 @@ public class TestcasesActivity extends BaseActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 TestCaseResponse toDelete = mTestcasesList.get(position);
                 startDeletingTestcase(toDelete);
-                return false;
+                return true;
             }
         });
 

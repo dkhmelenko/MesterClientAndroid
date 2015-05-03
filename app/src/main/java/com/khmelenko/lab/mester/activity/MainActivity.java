@@ -73,7 +73,7 @@ public class MainActivity extends BaseActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 ProjectResponse toDelete = mProjectsList.get(position);
                 startDeletingProject(toDelete);
-                return false;
+                return true;
             }
         });
 

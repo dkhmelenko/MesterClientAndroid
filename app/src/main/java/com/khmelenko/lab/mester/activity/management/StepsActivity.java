@@ -72,7 +72,7 @@ public class StepsActivity extends BaseActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 StepResponse toDelete = mStepsList.get(position);
                 startDeletingStep(toDelete);
-                return false;
+                return true;
             }
         });
     }
