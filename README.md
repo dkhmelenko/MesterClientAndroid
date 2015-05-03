@@ -10,7 +10,7 @@ Application provides the following features:
 - Posting testing results to the server
 - Viewing testing results
 
-
+![Projects list](/screenshots/Projects.png) ![Test cases](/screenshots/Testcases.png) ![Passing tests](/screenshots/PassingTest.png) ![Testing Details](/screenshots/TestingDetails.png)
 
 All structures of the requests/responses and their descriptions are available [here](https://github.com/art-divin/mester-rest-api/wiki/Domain-JSON)
 
