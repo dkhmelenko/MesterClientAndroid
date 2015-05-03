@@ -14,23 +14,23 @@
     <string name="add_project_done_btn">Done</string>
 
     <!-- Testcases -->
-    <string name="title_activity_testcases">Testcases</string>
-    <string name="testcases_empty_list">No testcases</string>
+    <string name="title_activity_testcases">Test cases</string>
+    <string name="testcases_empty_list">No test cases</string>
     <string name="testcases_project_name">Project: %1$s</string>
     <string name="testcases_loading">Loading...</string>
-    <string name="delete_testcase_msg">Would you like to delete testcase %1$s?</string>
-    <string name="delete_testcase_title">Delete testcase</string>
+    <string name="delete_testcase_msg">Would you like to delete test case %1$s?</string>
+    <string name="delete_testcase_title">Delete test case</string>
 
     <!-- Add testcase -->
-    <string name="title_activity_add_testcase">Add testcase</string>
+    <string name="title_activity_add_testcase">Add test case</string>
     <string name="add_testcase_done_btn">Done</string>
-    <string name="add_testcase_name">Testcase title</string>
+    <string name="add_testcase_name">Test case title</string>
 
     <!-- Steps -->
     <string name="title_activity_steps">Steps</string>
     <string name="steps_empty_list">No steps</string>
     <string name="steps_loading">Loading...</string>
-    <string name="steps_testcase_title">Testcase: %1$s</string>
+    <string name="steps_testcase_title">Test case: %1$s</string>
     <string name="delete_step_msg">Would you like to delete step %1$s?</string>
     <string name="delete_step_title">Delete step</string>
 
@@ -46,7 +46,7 @@
     <string name="title_activity_project_management">Project management</string>
 
     <!-- Project management -->
-    <string name="project_management_testcases">Manage testcases</string>
+    <string name="project_management_testcases">Manage test cases</string>
     <string name="project_management_testing">Testing</string>
 
     <!-- Testing results -->
@@ -57,7 +57,7 @@
 
     <!-- New testing -->
     <string name="title_activity_new_testing">New testing</string>
-    <string name="new_testing_empty_list">No testcases for testing</string>
+    <string name="new_testing_empty_list">No test cases for testing</string>
     <string name="new_testing_loading">Loading...</string>
     <string name="testing_results_test_id">Test %1$s</string>
     <string name="new_testing_confirm_quit_testing">Are you sure to quit testing? It will be impossible to continue it</string>
