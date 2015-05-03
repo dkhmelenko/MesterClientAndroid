@@ -8,7 +8,8 @@
         android:id="@+id/testingResultsNewTestingBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/testing_results_start_new_testing"/>
+        android:text="@string/testing_results_start_new_testing"
+        android:layout_margin="5dp"/>
 
     <ListView
         android:id="@+id/testsListView"

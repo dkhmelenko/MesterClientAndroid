@@ -35,7 +35,7 @@
     <string name="delete_step_title">Delete step</string>
 
     <!-- Add step -->
-    <string name="title_activity_add_step">AddStepActivity</string>
+    <string name="title_activity_add_step">Add step</string>
     <string name="add_step_number">Step number</string>
     <string name="add_step_text">Step text</string>
 
