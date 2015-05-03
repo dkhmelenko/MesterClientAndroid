@@ -2,13 +2,15 @@
 [![Build Status on Travis:](https://travis-ci.org/brave-warrior/MesterClientAndroid.svg?branch=master)](https://travis-ci.org/brave-warrior/MesterClientAndroid)
 
 This project is implementation of the [Mester Web Service](https://github.com/art-divin/mester-rest-api) for Android platform.
-Application should provide the following features:
+Application provides the following features:
 - Adding/removing project
 - Adding and removing test cases for the project
 - Adding/removing test steps for each test case
 - Passing tests manually
 - Posting testing results to the server
 - Viewing testing results
+
+
 
 All structures of the requests/responses and their descriptions are available [here](https://github.com/art-divin/mester-rest-api/wiki/Domain-JSON)
 
